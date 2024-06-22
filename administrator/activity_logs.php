@@ -1,0 +1,1 @@
+<p>This is activity logs page</p>

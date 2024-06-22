@@ -1,0 +1,146 @@
+<?php
+$pageTitle = 'Department Management';
+include('sessions.php');
+include('includes/header.php');
+include('includes/navbar.php');
+
+$getCollege = "SELECT deptID, dept_desc FROM department_tbl";
+$department = $connection->query($getCollege);
+
+$colleges = [];
+if ($department->num_rows > 0) {
+    while($row = $department->fetch_assoc()) {
+        $colleges[] = $row;
+    }
+}
+$dept = "SELECT * FROM department_tbl";
+$res = mysqli_query($connection, $dept);
+
+?>
+
+    <!-- Main Sidebar Container -->
+    <?php include('includes/sidebar.php'); ?>
+    
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+         <!-- Content Header (Page header) -->
+         <?php include('includes/breadcrumb.php'); ?>
+        <!-- /.content-header -->
+
+       <!-- Main content -->
+       <section class="content">
+            
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#addDept">
+                        <i class="fa fa-university fa-sm"></i>
+                        </a>
+                        <!-- add user modal -->
+                        <div class="modal fade" id="addDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-bold" id="exampleModalLabel"><i class="fa fa-university"></i> Register Department</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="script/newDepartment.php" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label> 
+                                                Department Name: 
+                                                <span class="text-bold text-sm text-danger">* </span>
+                                            </label>
+                                            <input type="text" name="dept_name" id="dept_name" class="form-control" required placeholder="Enter Abbreviation">
+                                        </div>
+                                        <div class="form-group">
+                                            <label> 
+                                                Description: 
+                                                <span class="text-bold text-sm text-danger">* </span>
+                                                <i class="text-italic text-sm text-danger"> (Write complete Description)</i>
+                                            </label>
+                                            <input type="text" name="dept_desc" id="dept_desc" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                       
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                    </div>
+
+                                </form>
+
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                  
+                   
+                    <table id="user_tbl" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Department Name</th>
+                                <th>Description</th>
+                                <th>View record</th>
+                                
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <?php
+                                if(mysqli_num_rows($res) > 0)
+                                {
+                                    while($row = mysqli_fetch_assoc($res))
+                                    { ?>
+
+                                        <tr>
+                                            <td> <?php echo $row['dept_name'];?> </td>
+                                            <td> <?php echo $row['dept_desc']; ?> </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary form-control col-md-5"><i class="fa fa-edit"></i></button>  
+                                                <button class="btn btn-sm btn-danger form-control col-md-5"><i class="fa fa-trash"></i> </button> 
+                                            </td>
+
+                                        </tr>
+
+                                        <?php
+                                    }
+                                }
+                            ?>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+<?php
+include('includes/scripts.php');
+include('includes/footer.php');
+?>
+
+<script>
+    //script for data tables
+    $(function () 
+    {
+        $("#user_tbl").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
+        
+    });
+
+</script>
