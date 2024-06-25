@@ -69,7 +69,6 @@ $res = mysqli_query($connection, $dept);
                                     </div>
 
                                     <div class="modal-footer">
-                                       
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                         <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
                                     </div>
@@ -104,12 +103,57 @@ $res = mysqli_query($connection, $dept);
                                             <td> <?php echo $row['dept_name'];?> </td>
                                             <td> <?php echo $row['dept_desc']; ?> </td>
                                             <td>
-                                                <button class="btn btn-sm btn-primary form-control col-md-5"><i class="fa fa-edit"></i></button>  
-                                                <button class="btn btn-sm btn-danger form-control col-md-5"><i class="fa fa-trash"></i> </button> 
+                                                <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
+                    
+                                                
+                                                
+                                                <!-- Edit Department -->
+                                                    <div class="modal fade" id="editDept<?php echo $row['deptID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $row['deptID']; ?>" aria-hidden="true">
+                                                        <div class="modal-dialog modal-sm" role="document">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-bold" id="editModalLabel<?php echo $row['deptID']; ?>"><i class="fa fa-university"></i> Update Department</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form id="editForm<?php echo $row['deptID']; ?>" action="script/updateDept.php" method="POST">
+                                                                <input type="text" name="dept_id"class="form-control" value="<?php echo $row['deptID']; ?>" readonly hidden>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label> 
+                                                                            Department Name: 
+                                                                            <span class="text-bold text-sm text-danger">* </span>
+                                                                        <input type="text" name="dept_name" class="form-control" value="<?php echo $row['dept_name']; ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label> 
+                                                                            Description: 
+                                                                            <span class="text-bold text-sm text-danger">* </span>
+                                                                            <i class="text-italic text-sm text-danger"> (Write complete Description)</i>
+                                                                        </label>
+                                                                        <input type="text" name="dept_desc" class="form-control" value="<?php echo $row['dept_desc']; ?>" required>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                                                                </div>
+
+                                                            </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                <a class="btn btn-danger form-control col-md-5" href="script/deleteDepartment.php?id=<?php echo$row['deptID']; ?>" onclick="return confirm('Are you sure you want to delete this department?');"> <i class="fa fa-trash"></i> </a>
                                             </td>
 
                                         </tr>
 
+                                          
                                         <?php
                                     }
                                 }
@@ -129,6 +173,7 @@ $res = mysqli_query($connection, $dept);
 
 <?php
 include('includes/scripts.php');
+
 include('includes/footer.php');
 ?>
 
@@ -142,5 +187,10 @@ include('includes/footer.php');
         }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
         
     });
+
+
+
+
+
 
 </script>

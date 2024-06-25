@@ -80,28 +80,27 @@ $res = mysqli_query($connection, $faculty);
                                                     First Name: 
                                                     <span class="text-bold text-sm text-danger">* </span> 
                                                 </label>
-                                                <input type="text" name="facultyfName" id="facultyfName" class="form-control" required placeholder="Enter Faculty Name">
+                                                <input type="text" name="facultyfName" id="facultyfName" class="form-control" required placeholder="Enter faculty first name">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label> 
                                                     Middle Name 
                                                     <span class="text-bold text-sm text-danger">* </span>
                                                 </label>
-                                                <input type="text" name="facultymName" id="facultymName" class="form-control" required placeholder="Enter Faculty Name">
+                                                <input type="text" name="facultymName" id="facultymName" class="form-control" required placeholder="Enter faculty middle name">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label> 
                                                     Last Name 
                                                     <span class="text-bold text-sm text-danger">* </span>
                                                 </label>
-                                                <input type="text" name="facultylName" id="facultylName" class="form-control" required placeholder="Enter Faculty Name">
+                                                <input type="text" name="facultylName" id="facultylName" class="form-control" required placeholder="Enter faculty last name">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label> 
                                                     Ext. Name 
-                                                    <span class="text-bold text-sm text-danger">* </span>
                                                 </label>
-                                                <input type="text" name="facultyeName" id="facultyeName" class="form-control" placeholder="Enter Faculty Name">
+                                                <input type="text" name="facultyeName" id="facultyeName" class="form-control" placeholder="Enter faculty extension ame">
                                             </div>
 
                                         </div>
@@ -159,7 +158,9 @@ $res = mysqli_query($connection, $faculty);
                                             <td> <?php echo $row['faculty_role']; ?> </td>
                                             <td> <?php echo $row['deptID']; ?> </td>
                                             <td> <?php echo $row['login_status']; ?> </td>
-                                            <td><button class="btn btn-sm btn-warning form-control"> View record <i class="nav-icon fas fa-user"> </i></button></td>
+                                            <td>
+                                                <a class="btn btn-warning form-control" href="view_faculty.php?id=<?php echo$row['userID']; ?>"> View <i class="fa fa-user-circle"></i> </i></a>
+                                            </td>
 
                                         </tr>
 

@@ -52,11 +52,11 @@
 <script src="../assets/js/addresses.js"></script>
 
 <!-- FLOT CHARTS -->
-<script src="js/flot/jquery.flot.js"></script>
+<!-- <script src="js/flot/jquery.flot.js"></script> -->
 <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="js/flot/plugins/jquery.flot.resize.js"></script>
+<!-- <script src="js/flot/plugins/jquery.flot.resize.js"></script> -->
 <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="../assets/js/flot/plugins/jquery.flot.pie.js"></script>
+<!-- <script src="../assets/js/flot/plugins/jquery.flot.pie.js"></script> -->
 
 <!-- SweetAlert -->
 <script src="../assets/js/sweetalert.min.js"></script>
@@ -67,7 +67,6 @@
   {
     ?>
       <script>
-        // script for adding users
         swal({
           title: "<?php echo $_SESSION['status']; ?>",
           icon: "<?php echo $_SESSION['status_code']; ?>",
