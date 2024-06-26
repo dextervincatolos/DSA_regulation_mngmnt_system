@@ -43,6 +43,7 @@
   $college = 'SJCBI'; 
   $active_page = basename($_SERVER['PHP_SELF'], ".php");
   $active_page_name= ucfirst($active_page);
+  $student_mngmnt_pages = ['manage_student', 'manage_violation'];
   $sys_mngmnt_pages = ['manage_user', 'manage_college', 'manage_course', 'manage_yearlvl', 'manage_acadsyear'];
   $report_pages = ['report_analytics', 'report_custom', 'report_activity'];
 

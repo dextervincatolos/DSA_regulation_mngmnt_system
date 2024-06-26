@@ -18,6 +18,26 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
+                    <li class="nav-item <?php echo in_array($active_page, $student_mngmnt_pages) ? 'menu-open' : ''; ?>">
+                        <a href="#" class="nav-link <?php echo in_array($active_page, $sys_mngmnt_pages) ? 'active' : ''; ?>">
+                        <i class="fa fa-users"></i>
+                            <p> Student Management <i class="right fas fa-angle-left"></i> </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                                <a href="manage_student.php" class="nav-link <?php echo $active_page == 'manage_student' ? 'active' : ''; ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Student</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="manage_violation.php" class="nav-link <?php echo $active_page == 'manage_violation' ? 'active' : ''; ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Violation</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item <?php echo in_array($active_page, $sys_mngmnt_pages) ? 'menu-open' : ''; ?>">
                         <a href="#" class="nav-link <?php echo in_array($active_page, $sys_mngmnt_pages) ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-cogs"></i>
