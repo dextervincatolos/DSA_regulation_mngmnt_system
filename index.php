@@ -65,7 +65,7 @@
           <br>
           <!-- <h2>St. joseph's College of Baggao, Inc.</h2> -->
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="faculty/login.php" class="btn-get-started scrollto"><i class="bx bx-user"></i> Faculty Login</a>
+            <a href="dsa/login.php" class="btn-get-started scrollto"><i class="bx bx-user"></i> Faculty Login</a>
             <!-- <a href="student/login.php" class="btn-watch-video"><i class="bx bx-user-circle"></i><span>Student Login</span></a> -->
           </div>
         </div>
