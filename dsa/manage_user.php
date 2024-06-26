@@ -5,15 +5,6 @@ include('includes/header.php');
 include('includes/navbar.php');
 include('includes/sidebar.php'); 
 
-$getCollege = "SELECT deptID, dept_desc FROM department_tbl";
-$department = $connection->query($getCollege);
-
-$colleges = [];
-if ($department->num_rows > 0) {
-    while($row = $department->fetch_assoc()) {
-        $colleges[] = $row;
-    }
-}
 $faculty = "SELECT * FROM user_tbl";
 $res = mysqli_query($connection, $faculty);
 
@@ -49,29 +40,19 @@ $res = mysqli_query($connection, $faculty);
                                 <form action="script/newFaculty.php" method="POST">
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <label> 
                                                     Faculty ID
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
                                                 <input type="text" name="facultyNum" id="facultyNum" class="form-control" required placeholder="Faculty ID number">
                                             </div>
-                                            <div class="form-group col-md-3">
-                                                <label> Faculty Role <span class="text-bold text-sm text-danger">*</span></label>
-                                                <select name="role" id="role" class="form-control" required>
-                                                    <option value="">Select Role</option>
-                                                    <option value="Dean">Dean</option>
-                                                    <option value="Teacher">Teacher</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label> Department <span class="text-bold text-sm text-danger">*</span></label>
-                                                <select name="department" id="department" class="form-control" required>
-                                                    <option value="">Select College</option>
-                                                    <?php foreach($colleges as $college): ?>
-                                                        <option value="<?php echo $college['deptID']; ?>"><?php echo $college['dept_desc']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                            <div class="form-group col-md-8">
+                                            <label> 
+                                                    Email address
+                                                    <span class="text-bold text-sm text-danger">*</span> 
+                                                </label>
+                                                <input type="email" name="facultyEmail" id="facultyEmail" class="form-control" required placeholder="Email address">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -137,7 +118,6 @@ $res = mysqli_query($connection, $faculty);
                                 <th>Contact</th>
                                 <th>Email</th>
                                 <th>Faculy Role</th>
-                                <th>Assigned Department</th>
                                 <th>Login Status</th>
                                 <th>View record</th>
                                 
@@ -156,7 +136,6 @@ $res = mysqli_query($connection, $faculty);
                                             <td> <?php echo $row['faculty_contact']; ?> </td>
                                             <td> <?php echo $row['faculty_email']?> </td>
                                             <td> <?php echo $row['faculty_role']; ?> </td>
-                                            <td> <?php echo $row['deptID']; ?> </td>
                                             <td> <?php echo $row['login_status']; ?> </td>
                                             <td>
                                                 <a class="btn btn-warning form-control" href="view_faculty.php?id=<?php echo$row['userID']; ?>"> View <i class="fa fa-user-circle"></i> </i></a>

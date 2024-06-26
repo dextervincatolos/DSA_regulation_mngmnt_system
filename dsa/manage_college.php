@@ -87,7 +87,7 @@ $res = mysqli_query($connection, $dept);
                             <tr>
                                 <th>Department Name</th>
                                 <th>Description</th>
-                                <th>View record</th>
+                                <th>Options</th>
                                 
                             </tr>
                         </thead>

@@ -7,14 +7,15 @@ include('includes/navbar.php');
 $getCourses = "SELECT * FROM course_tbl JOIN department_tbl ON course_tbl.deptID = department_tbl.deptID";
 $courses = mysqli_query($connection, $getCourses);
 
-// $colleges = [];
-// if ($department->num_rows > 0) {
-//     while($row = $department->fetch_assoc()) {
-//         $colleges[] = $row;
-//     }
-// }
-// $dept = "SELECT * FROM department_tbl";
-// $res = mysqli_query($connection, $dept);
+$getCollege = "SELECT deptID, dept_desc FROM department_tbl";
+$department = $connection->query($getCollege);
+
+$colleges = [];
+if ($department->num_rows > 0) {
+    while($row = $department->fetch_assoc()) {
+        $colleges[] = $row;
+    }
+}
 
 ?>
 
@@ -36,27 +37,28 @@ $courses = mysqli_query($connection, $getCourses);
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#addDept">
-                        <i class="fa fa-university fa-sm"></i>
+                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newCourse">
+                        <i class="fa fa-graduation-cap"></i>
                         </a>
-                        <!-- add user modal -->
-                        <div class="modal fade" id="addDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
+                        <!-- register course modal -->
+                        <div class="modal fade" id="newCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-bold" id="exampleModalLabel"><i class="fa fa-university"></i> Register Department</h5>
+                                    <h5 class="modal-title text-bold" id="exampleModalLabel">
+                                    <i class="fa fa-graduation-cap"></i> Register Course</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="script/newDepartment.php" method="POST">
+                                <form action="script/newCourse.php" method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label> 
-                                                Department Name: 
+                                                Course Name: 
                                                 <span class="text-bold text-sm text-danger">* </span>
                                             </label>
-                                            <input type="text" name="dept_name" id="dept_name" class="form-control" required placeholder="Enter Abbreviation">
+                                            <input type="text" name="course_name" id="course_name" class="form-control" required placeholder="Enter Abbreviation">
                                         </div>
                                         <div class="form-group">
                                             <label> 
@@ -64,8 +66,18 @@ $courses = mysqli_query($connection, $getCourses);
                                                 <span class="text-bold text-sm text-danger">* </span>
                                                 <i class="text-italic text-sm text-danger"> (Write complete Description)</i>
                                             </label>
-                                            <input type="text" name="dept_desc" id="dept_desc" class="form-control" required>
+                                            <input type="text" name="course_desc" id="course_desc" class="form-control" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label> Department/College <span class="text-bold text-sm text-danger">*</span></label>
+                                            <select name="dept_name" id="dept_name" class="form-control" required>
+                                                <option value="">Select College</option>
+                                                <?php foreach($colleges as $college): ?>
+                                                    <option value="<?php echo $college['deptID']; ?>"><?php echo $college['dept_desc']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                       
                                     </div>
 
                                     <div class="modal-footer">
@@ -96,38 +108,39 @@ $courses = mysqli_query($connection, $getCourses);
                         
                         <tbody>
                             <?php
-                                if(mysqli_num_rows($res) > 0)
+                                if(mysqli_num_rows($courses) > 0)
                                 {
                                     while($course = mysqli_fetch_assoc($courses))
                                     { ?>
 
                                         <tr>
                                             <td> <?php echo $course['course_name'];?> </td>
-                                            <td> <?php echo $row['course_desc']; ?> </td>
-                                            <td> <?php echo $row['dept_desc']; ?> </td>
+                                            <td> <?php echo $course['course_desc']; ?> </td>
+                                            <td> <?php echo $course['dept_desc']; ?> </td>
                                             <td>
-                                                <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
+                                                <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
                     
-                                                
-                                                
-                                                <!-- Edit Department -->
-                                                    <div class="modal fade" id="editDept<?php echo $row['deptID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $row['deptID']; ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm" role="document">
+                                                <!-- Edit Course -->
+                                                    <div class="modal fade" id="editCourse<?php echo $course['courseID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $course['courseID']; ?>" aria-hidden="true">
+                                                        <div class="modal-dialog modal-md" role="document">
                                                             <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title text-bold" id="editModalLabel<?php echo $row['deptID']; ?>"><i class="fa fa-university"></i> Update Department</h5>
+                                                                <h5 class="modal-title text-bold" id="editModalLabel<?php echo $course['courseID']; ?>"><i class="fa fa-graduation-cap"></i> Update Course</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form id="editForm<?php echo $row['deptID']; ?>" action="script/updateDept.php" method="POST">
-                                                                <input type="text" name="dept_id"class="form-control" value="<?php echo $row['deptID']; ?>" readonly hidden>
+                                                            <form id="editForm<?php echo $course['courseID']; ?>" action="script/updateCourse.php" method="POST">
+
+                                                                <input type="text" name="course_id"class="form-control" value="<?php echo $course['courseID']; ?>" readonly hidden>
+                                                                
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
                                                                         <label> 
-                                                                            Department Name: 
+                                                                            Course Name: 
                                                                             <span class="text-bold text-sm text-danger">* </span>
-                                                                        <input type="text" name="dept_name" class="form-control" value="<?php echo $row['dept_name']; ?>" required>
+                                                                        </label>
+                                                                        <input type="text" name="course_name" id="course_name" class="form-control" required placeholder="Enter Abbreviation" value="<?php echo $course['course_name'];?>">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label> 
@@ -135,8 +148,18 @@ $courses = mysqli_query($connection, $getCourses);
                                                                             <span class="text-bold text-sm text-danger">* </span>
                                                                             <i class="text-italic text-sm text-danger"> (Write complete Description)</i>
                                                                         </label>
-                                                                        <input type="text" name="dept_desc" class="form-control" value="<?php echo $row['dept_desc']; ?>" required>
+                                                                        <input type="text" name="course_desc" id="course_desc" class="form-control" value="<?php echo $course['course_desc'];?>"  required placeholder="Enter Description">
+                                                                    </div>      
+                                                                    <div class="form-group">
+                                                                        <label> Department/College <span class="text-bold text-sm text-danger">*</span></label>
+                                                                        <select name="dept_name" id="dept_name" class="form-control" required>
+                                                                            <option value="">Select College</option>
+                                                                            <?php foreach($colleges as $college): ?>
+                                                                                <option value="<?php echo $college['deptID']; ?>" <?php echo $course['deptID'] ==  $college['deptID'] ? 'Selected' : ''; ?> ><?php echo $college['dept_desc']; ?></option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
                                                                     </div>
+                                                            
                                                                 </div>
 
                                                                 <div class="modal-footer">
@@ -151,7 +174,7 @@ $courses = mysqli_query($connection, $getCourses);
                                                     </div>
 
 
-                                                <a class="btn btn-danger form-control col-md-5" href="script/deleteDepartment.php?id=<?php echo$row['deptID']; ?>" onclick="return confirm('Are you sure you want to delete this department?');"> <i class="fa fa-trash"></i> </a>
+                                                <a class="btn btn-danger form-control col-md-5" href="script/deleteCourse.php?id=<?php echo $course['courseID']; ?>" onclick="return confirm('Are you sure you want to delete this Course?');"> <i class="fa fa-trash"></i> </a>
                                             </td>
 
                                         </tr>
