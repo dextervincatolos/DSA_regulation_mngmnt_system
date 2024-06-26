@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Admin Dashboard';
+$pageTitle = 'Dashboard';
 include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');
@@ -37,7 +37,7 @@ include('includes/navbar.php');
                         </div>
                     </div>
                      <!-- settled Violations -->
-                     <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
                                 <?php

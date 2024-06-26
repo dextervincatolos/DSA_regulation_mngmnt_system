@@ -22,7 +22,7 @@
   <div class="card card-outline card-primary">
     
     <div class="card-header text-center">
-      <a href="login.php" class="h4"> Administrator Login</a>
+      <a href="login.php" class="h4"> Faculty Login</a>
     </div>
     <div class="card-body">
 
