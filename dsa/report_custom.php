@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'User Management';
+$pageTitle = 'Custom Report';
 include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');

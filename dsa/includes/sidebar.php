@@ -12,15 +12,21 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                    <li class="nav-item">
+                <li class="nav-item">
                         <a href="dashboard.php" class="nav-link <?php echo $active_page == 'dashboard' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p> Dashboard </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="dashboard.php" class="nav-link <?php echo $active_page == '' ? 'active' : ''; ?>">
+                            <i class="nav-icon fas fa-balance-scale"></i>
+                            <p> Policy Management </p>
+                        </a>
+                    </li>
                     <li class="nav-item <?php echo in_array($active_page, $student_mngmnt_pages) ? 'menu-open' : '';?>" >
                         <a href="#" class="nav-link <?php echo in_array($active_page, $student_mngmnt_pages) ? 'active' : ''; ?>">
-                        <i class="fa fa-users"></i>
+                        <i class="nav-icon fas fa-users"></i>
                             <p> Student Management <i class="right fas fa-angle-left"></i> </p>
                         </a>
                         <ul class="nav nav-treeview">
