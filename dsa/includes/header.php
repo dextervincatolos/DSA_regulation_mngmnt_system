@@ -83,5 +83,6 @@
 
   <!-- Preloader -->
   <!-- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="assets/img/HEALME-LOGO-MAIN.png" alt="HEAL ME LOGO MAIN" height="500" width="500">
+    <img class="animation__shake" src="../assets/img/school-logo.png" height="500" width="500">
   </div> -->
+  

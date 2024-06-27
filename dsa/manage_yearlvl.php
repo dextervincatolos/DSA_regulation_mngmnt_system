@@ -7,16 +7,6 @@ include('includes/navbar.php');
 $getyearlvl = "SELECT * FROM yearlvl_tbl";
 $yrlvl = mysqli_query($connection, $getyearlvl);
 
-$getCollege = "SELECT deptID, dept_desc FROM department_tbl";
-$department = $connection->query($getCollege);
-
-$colleges = [];
-if ($department->num_rows > 0) {
-    while($row = $department->fetch_assoc()) {
-        $colleges[] = $row;
-    }
-}
-
 ?>
 
     <!-- Main Sidebar Container -->
@@ -37,11 +27,11 @@ if ($department->num_rows > 0) {
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newCourse">
+                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newYearlvl">
                         <i class="fa fa-calendar"></i>
                         </a>
                         <!-- register year level modal -->
-                        <div class="modal fade" id="newCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="newYearlvl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-md" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">

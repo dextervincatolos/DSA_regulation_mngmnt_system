@@ -4,15 +4,6 @@ include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');
 
-$getCollege = "SELECT deptID, dept_desc FROM department_tbl";
-$department = $connection->query($getCollege);
-
-$colleges = [];
-if ($department->num_rows > 0) {
-    while($row = $department->fetch_assoc()) {
-        $colleges[] = $row;
-    }
-}
 $dept = "SELECT * FROM department_tbl";
 $res = mysqli_query($connection, $dept);
 
@@ -37,11 +28,11 @@ $res = mysqli_query($connection, $dept);
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
                         <a class="btn btn-primary float-right" data-toggle="modal" data-target="#addDept">
-                        <i class="fa fa-university fa-sm"></i>
+                        <i class="fa fa-university"></i>
                         </a>
-                        <!-- add user modal -->
+                        <!-- add department modal -->
                         <div class="modal fade" id="addDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-dialog modal-md" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title text-bold" id="exampleModalLabel"><i class="fa fa-university"></i> Register Department</h5>
@@ -78,11 +69,11 @@ $res = mysqli_query($connection, $dept);
                                 </div>
                             </div>
                         </div>
-                
+                        <!-- add department modal -->
                     </div>
                   
-                   
-                    <table id="user_tbl" class="table table-bordered table-hover">
+                    <!-- Department table -->
+                    <table id="dept_tbl" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Department Name</th>
@@ -105,11 +96,9 @@ $res = mysqli_query($connection, $dept);
                                             <td>
                                                 <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
                     
-                                                
-                                                
                                                 <!-- Edit Department -->
                                                     <div class="modal fade" id="editDept<?php echo $row['deptID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $row['deptID']; ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm" role="document">
+                                                        <div class="modal-dialog modal-md" role="document">
                                                             <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title text-bold" id="editModalLabel<?php echo $row['deptID']; ?>"><i class="fa fa-university"></i> Update Department</h5>
@@ -118,12 +107,13 @@ $res = mysqli_query($connection, $dept);
                                                                 </button>
                                                             </div>
                                                             <form id="editForm<?php echo $row['deptID']; ?>" action="script/updateDept.php" method="POST">
-                                                                <input type="text" name="dept_id"class="form-control" value="<?php echo $row['deptID']; ?>" readonly hidden>
-                                                                <div class="modal-body">
+                                                                <input type="text" name="dept_id" class="form-control" value="<?php echo $row['deptID']; ?>" readonly hidden>
+                                                                <div class="modal-body">                                                                    
                                                                     <div class="form-group">
                                                                         <label> 
-                                                                            Department Name: 
+                                                                            Department Name:  
                                                                             <span class="text-bold text-sm text-danger">* </span>
+                                                                        </label>
                                                                         <input type="text" name="dept_name" class="form-control" value="<?php echo $row['dept_name']; ?>" required>
                                                                     </div>
                                                                     <div class="form-group">
@@ -161,6 +151,7 @@ $res = mysqli_query($connection, $dept);
                             
                         </tbody>
                     </table>
+                    <!-- Department table -->
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -181,10 +172,10 @@ include('includes/footer.php');
     //script for data tables
     $(function () 
     {
-        $("#user_tbl").DataTable({
+        $("#dept_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#dept_tbl_wrapper .col-md-6:eq(0)');
         
     });
 

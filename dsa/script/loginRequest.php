@@ -40,14 +40,14 @@ if(isset($_POST['login']))
     }
 }
 
-// //user sign out
+//user sign out
 if(isset($_POST['signOut']))
 {
     // Update loginStatus to 'offline' when signing out
-    mysqli_query($connection, "UPDATE user_tbl SET login_status='offline' WHERE adminID=".$_SESSION['uid']);
+    mysqli_query($connection, "UPDATE user_tbl SET login_status='offline' WHERE userID=".$_SESSION['uid']);
 
     session_destroy();
     unset($_SESSION['uid']);
-    header('Location: login.php');
+    header('Location: ../../index.php');
 }
 ?>

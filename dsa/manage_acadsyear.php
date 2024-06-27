@@ -89,11 +89,8 @@ $acads = mysqli_query($connection, $getAcadsyr);
                     <table id="acads_tbl" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                
-
-                            <th>Academic Years</th>
+                                <th>Academic Years</th>
                                 <th>Options</th>
-                                
                             </tr>
                         </thead>
                         
@@ -103,16 +100,10 @@ $acads = mysqli_query($connection, $getAcadsyr);
                                 {
                                     while($acadsYr = mysqli_fetch_assoc($acads))
                                     { ?>
-                                  
                                         <tr>
                                             <td> School Year: <?php echo $acadsYr['_from'].' - '.$acadsYr['_to']; ?> </td>
-                                            <td>
-                                               
-                                            </td>
-
+                                            <td>  </td>
                                         </tr>
-
-                                          
                                         <?php
                                     }
                                 }
@@ -135,57 +126,37 @@ include('includes/scripts.php');
 
 include('includes/footer.php');
 ?>
-<!-- Add your preferred JavaScript for modal functionality here -->
 <script>
-        // Get the modal
-        var modal = document.getElementById("newAcadsyr");
+        
+    // var modal = document.getElementById("newAcadsyr");
+    // var span = document.getElementsByClassName("close")[0];
+    // var cancelButton = document.getElementById("cancelButton");
+    // var form = document.getElementById("modalForm");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    
+    // var fromInput = document.getElementById("_from");
+    // var toInput = document.getElementById("_to");
 
-        // Get the cancel button
-        var cancelButton = document.getElementById("cancelButton");
+    // var currentYear = new Date().getFullYear();
+    // fromInput.max = currentYear;
+    // fromInput.min = currentYear;
 
-        // Get the form
-        var form = document.getElementById("modalForm");
+    // toInput.max = currentYear + 1;
 
-        // Get the inputs
-        var fromInput = document.getElementById("_from");
-        var toInput = document.getElementById("_to");
+    // fromInput.addEventListener('input', function() {
+    //     toInput.min = parseInt(fromInput.value) + 1;
+    // });
 
-        // Set the initial min and max values for the fromInput
-        var currentYear = new Date().getFullYear();
-        fromInput.max = currentYear;
-        fromInput.min = currentYear;
+    // span.onclick = function() {
+    //     modal.style.display = "none";
+    //     form.reset();
+    // }
 
-        // Set the initial min and max values for the toInput
-        toInput.max = currentYear + 1;
+    // cancelButton.onclick = function() {
+    //     modal.style.display = "none";
+    //     form.reset();
+    // }
 
-        // Add an event listener to the fromInput to update the toInput's min value
-        fromInput.addEventListener('input', function() {
-            toInput.min = parseInt(fromInput.value) + 1;
-        });
-
-        // When the user clicks on <span> (x), close the modal and reset the form
-        span.onclick = function() {
-            modal.style.display = "none";
-            form.reset();
-        }
-
-        // When the user clicks on the cancel button, close the modal and reset the form
-        cancelButton.onclick = function() {
-            modal.style.display = "none";
-            form.reset();
-        }
-
-        // You can also add additional code to open the modal if needed
-        // For example, when clicking a button to open the modal
-        // document.getElementById("openModalButton").onclick = function() {
-        //     modal.style.display = "block";
-        // }
-    </script>
-
-<script>
     //script for data tables
     $(function () 
     {

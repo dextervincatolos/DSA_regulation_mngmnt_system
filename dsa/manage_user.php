@@ -8,7 +8,6 @@ include('includes/sidebar.php');
 $faculty = "SELECT * FROM user_tbl";
 $res = mysqli_query($connection, $faculty);
 
-
 ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -25,7 +24,7 @@ $res = mysqli_query($connection, $faculty);
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
                         <a class="btn btn-primary float-right" data-toggle="modal" data-target="#adduserprofile">
-                            <i class="fa fa-user-plus fa-sm text-white-50"></i>
+                            <i class="fa fa-user-plus"></i>
                         </a>
                         <!-- add user modal -->
                         <div class="modal fade" id="adduserprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,14 +106,14 @@ $res = mysqli_query($connection, $faculty);
                                 </div>
                             </div>
                         </div>
-                
+                        <!-- add user modal -->
                     </div>
-                  
-                   
+                    <!-- Registered user table -->
                     <table id="user_tbl" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Faculty Name</th>
+                                <th>Address</th>
                                 <th>Contact</th>
                                 <th>Email</th>
                                 <th>Faculy Role</th>
@@ -133,7 +132,8 @@ $res = mysqli_query($connection, $faculty);
 
                                         <tr>
                                             <td> <?php echo $row['faculty_fname'].' '.$row['faculty_mname'].' '.$row['faculty_lname']; ?> </td>
-                                            <td> <?php echo $row['faculty_contact']; ?> </td>
+                                            <td> <?php echo $row['faculty_address'];?> </td>
+                                            <td> <?php echo $row['faculty_contact'];?> </td>
                                             <td> <?php echo $row['faculty_email']?> </td>
                                             <td> <?php echo $row['faculty_role']; ?> </td>
                                             <td> <?php echo $row['login_status']; ?> </td>

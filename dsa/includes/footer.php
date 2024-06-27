@@ -1,6 +1,6 @@
 
     <footer class="main-footer">
-        &copy; Copyright <strong><span><a href="#">CICS </a> Violation Management System</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span><a href="#">SJCBI </a> Regulation Management System</span></strong>. All Rights Reserved
         
         <div class="float-right d-none d-sm-inline-block">
         </div>

@@ -81,7 +81,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
-                <form action="login.php" method="POST">
+                <form action="script/loginRequest.php" method="POST">
                     <button type="submit" name="signOut" class="btn btn-danger">SIGN OUT</button>
                 </form> 
 

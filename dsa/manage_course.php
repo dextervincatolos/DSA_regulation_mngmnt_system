@@ -90,7 +90,7 @@ if ($department->num_rows > 0) {
                                 </div>
                             </div>
                         </div>
-                
+                        <!-- register course modal -->
                     </div>
                   
                    
