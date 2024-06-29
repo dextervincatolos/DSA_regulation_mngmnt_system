@@ -17,7 +17,7 @@ if(isset($_POST['login']))
         if($verify==1)
         {
             // Update loginStatus to 'online'
-            mysqli_query($connection, "UPDATE user_tbl SET login_status='online' WHERE userID=".$row['userID']);
+            mysqli_query($connection, "UPDATE user_tbl SET user_status='online' WHERE userID=".$row['userID']);
 
             $_SESSION['uid'] = $row['userID'];
             $_SESSION['role'] = $row['faculty_role'];
@@ -38,16 +38,5 @@ if(isset($_POST['login']))
         $_SESSION['status_code'] = "warning";
         header('Location: ../login.php');
     }
-}
-
-//user sign out
-if(isset($_POST['signOut']))
-{
-    // Update loginStatus to 'offline' when signing out
-    mysqli_query($connection, "UPDATE user_tbl SET login_status='offline' WHERE userID=".$_SESSION['uid']);
-
-    session_destroy();
-    unset($_SESSION['uid']);
-    header('Location: ../../index.php');
 }
 ?>

@@ -38,51 +38,61 @@ $res = mysqli_query($connection, $faculty);
                                 </div>
                                 <form action="script/newFaculty.php" method="POST">
                                     <div class="modal-body">
-                                        <div class="row">
+                                        
                                             <div class="form-group col-md-4">
                                                 <label> 
                                                     Faculty ID
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
-                                                <input type="text" name="facultyNum" id="facultyNum" class="form-control" required placeholder="Faculty ID number">
+                                                <input type="text" name="facultyNum" id="facultyNum" class="form-control" required>
                                             </div>
-                                            <div class="form-group col-md-8">
-                                            <label> 
-                                                    Email address
-                                                    <span class="text-bold text-sm text-danger">*</span> 
-                                                </label>
-                                                <input type="email" name="facultyEmail" id="facultyEmail" class="form-control" required placeholder="Email address">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="row">
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-4">
                                                 <label> 
                                                     First Name: 
                                                     <span class="text-bold text-sm text-danger">* </span> 
                                                 </label>
-                                                <input type="text" name="facultyfName" id="facultyfName" class="form-control" required placeholder="Enter faculty first name">
+                                                <input type="text" name="facultyfName" id="facultyfName" class="form-control" required>
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label> 
                                                     Middle Name 
                                                     <span class="text-bold text-sm text-danger">* </span>
                                                 </label>
-                                                <input type="text" name="facultymName" id="facultymName" class="form-control" required placeholder="Enter faculty middle name">
+                                                <input type="text" name="facultymName" id="facultymName" class="form-control" required>
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label> 
                                                     Last Name 
                                                     <span class="text-bold text-sm text-danger">* </span>
                                                 </label>
-                                                <input type="text" name="facultylName" id="facultylName" class="form-control" required placeholder="Enter faculty last name">
+                                                <input type="text" name="facultylName" id="facultylName" class="form-control" required>
                                             </div>
-                                            <div class="form-group col-md-3">
+                                            <div class="form-group col-md-2">
                                                 <label> 
                                                     Ext. Name 
                                                 </label>
-                                                <input type="text" name="facultyeName" id="facultyeName" class="form-control" placeholder="Enter faculty extension ame">
+                                                <input type="text" name="facultyeName" id="facultyeName" class="form-control">
                                             </div>
 
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="form-group col-md-6">
+                                                <label> 
+                                                    Contact No.
+                                                    <span class="text-bold text-sm text-danger">*</span> 
+                                                </label>
+                                                <input type="number" name="facultyContact" id="facultyContact" class="form-control" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                            <label> 
+                                                    Email address
+                                                    <span class="text-bold text-sm text-danger">*</span> 
+                                                </label>
+                                                <input type="email" name="facultyEmail" id="facultyEmail" class="form-control" required>
+                                            </div>
                                         </div>
                                         
                                         <div class="form-group">
@@ -91,7 +101,7 @@ $res = mysqli_query($connection, $faculty);
                                                 <span class="text-bold text-sm text-danger">* </span>
                                                 <i class="text-italic text-sm text-danger"> (Write complete address)</i>
                                             </label>
-                                            <input type="text" name="facultyAddress" id="facultyAddress" class="form-control" required placeholder="Enter Faculty Address">
+                                            <input type="text" name="facultyAddress" id="facultyAddress" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -112,12 +122,12 @@ $res = mysqli_query($connection, $faculty);
                     <table id="user_tbl" class="table table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th width="20px"></th>
+                                <th>Role</th>
                                 <th>Faculty Name</th>
-                                <th>Address</th>
                                 <th>Contact</th>
                                 <th>Email</th>
-                                <th>Faculy Role</th>
-                                <th>Login Status</th>
+                                <th>Address</th>
                                 <th>View record</th>
                                 
                             </tr>
@@ -131,12 +141,34 @@ $res = mysqli_query($connection, $faculty);
                                     { ?>
 
                                         <tr>
+                                           
+                                            <td class="text-center" >
+                                                <h5>
+                                                    <i class="fa fa-circle 
+                                                        <?php 
+                                                            switch ($row['user_status']) {
+                                                                case 'online':
+                                                                    echo 'text-success';
+                                                                    break;
+                                                                case 'offline':
+                                                                    echo 'text-warning';
+                                                                    break;
+                                                                case 'deactivated':
+                                                                    echo 'text-danger';
+                                                                    break;
+                                                                default:
+                                                                    echo 'text-light';
+                                                            }
+                                            
+                                                        ?>">
+                                                    </i>
+                                                </h5>
+                                            </td>
+                                            <td> <?php echo $row['faculty_role']; ?> </td>
                                             <td> <?php echo $row['faculty_fname'].' '.$row['faculty_mname'].' '.$row['faculty_lname']; ?> </td>
-                                            <td> <?php echo $row['faculty_address'];?> </td>
                                             <td> <?php echo $row['faculty_contact'];?> </td>
                                             <td> <?php echo $row['faculty_email']?> </td>
-                                            <td> <?php echo $row['faculty_role']; ?> </td>
-                                            <td> <?php echo $row['login_status']; ?> </td>
+                                            <td> <?php echo $row['faculty_address'];?> </td>
                                             <td>
                                                 <a class="btn btn-warning form-control" href="view_faculty.php?id=<?php echo$row['userID']; ?>"> View <i class="fa fa-user-circle"></i> </i></a>
                                             </td>

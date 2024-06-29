@@ -193,7 +193,6 @@ if ($department->num_rows > 0) {
                                             <td> <?php echo $student['course_name'];?> </td>
                                             <td> <?php echo $student['student_gender']?> </td>
                                             <td> <?php echo $student['student_contact']; ?> </td>
-                                            <td> <?php echo $student['student_contact']; ?> </td>
                                             <td> <?php echo $student['student_email']; ?> </td>
                                             <td> <?php echo $student['added_by']; ?> </td>
                                             <td>

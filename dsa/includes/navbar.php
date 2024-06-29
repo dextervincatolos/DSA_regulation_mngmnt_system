@@ -57,7 +57,7 @@
                 <i class="fas fa-list-ul mr-3"></i> Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item dropdown-footer" data-toggle="modal" data-target="#signout">Sign Out</a>
+                <a class="btn dropdown-item dropdown-footer text-danger" data-toggle="modal" data-target="#signout">Sign Out  <i class="fa fa-arrow-right"> </i></a>
             </div>
         </li>
 </ul>
@@ -69,20 +69,20 @@
         <div class="modal-dialog modal-s" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">SIGN OUT</h5>
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Sign Out <i class="fa fa-arrow-right"> </i></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Select "SIGN OUT" below if you are ready to end your current session.
+                Select "<span class="text-danger">SIGN OUT</span>" below if you are ready to end your current session.
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
-                <form action="script/loginRequest.php" method="POST">
-                    <button type="submit" name="signOut" class="btn btn-danger">SIGN OUT</button>
+                <form action="script/logout.php" method="POST">
+                    <button type="submit" name="signOut" class="btn btn-danger">Sign Out</button>
                 </form> 
 
             </div>
