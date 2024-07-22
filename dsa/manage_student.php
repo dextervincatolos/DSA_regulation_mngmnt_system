@@ -120,10 +120,9 @@ if ($department->num_rows > 0) {
                                                     College
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
-                                                <select class="form-control" name="studentCollege" id="studentCollege" required>
-                                                    <option value="">Select Department</option>
+                                                <select class="form-control selectpicker" name="studentCollege" id="studentCollege" data-live-search = "true" data-size="5" title="Search Department..." data-width="100%" required>
                                                     <?php foreach($colleges as $college): ?>
-                                                    <option value="<?php echo $college['deptID']; ?>"><?php echo $college['dept_desc']; ?></option>
+                                                    <option data-tokens="<?php echo $college['deptID']; ?>" value="<?php echo $college['deptID']; ?>"><?php echo $college['dept_desc']; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -132,8 +131,7 @@ if ($department->num_rows > 0) {
                                                     Course
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
-                                                <select class="form-control" name="studentCourse" id="studentCourse" required>
-                                                    <option value="">Select Course</option>
+                                                <select class="form-control selectpicker" name="studentCourse" id="studentCourse" data-live-search = "true" data-size="5" title="Search student name..." data-width="100%" required>
                                                     <!-- Course options will be populated here -->
                                                 </select>
                                             </div>

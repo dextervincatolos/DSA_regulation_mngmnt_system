@@ -7,6 +7,9 @@ include('includes/navbar.php');
 $getAcadsyr = "SELECT * FROM academic_year_tbl";
 $acads = mysqli_query($connection, $getAcadsyr);
 
+$getSemester = "SELECT * FROM semester_tbl";
+$semester = mysqli_query($connection, $getSemester);
+
 ?>
 
     <!-- Main Sidebar Container -->
@@ -113,8 +116,133 @@ $acads = mysqli_query($connection, $getAcadsyr);
                     </table>
                 </div>
                 <!-- /.card-body -->
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                <hr>
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+                 <!-- /.card-header -->
+                 <div class="card-body">
+                 <h4>Semester:</h4>
+
+                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newSem">
+                        <i class="fa fa-leaf"></i>  
+                        </a>
+                        <!-- Create new Academic Year modal -->
+                        <div class="modal fade" id="newSem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-md" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-bold" id="exampleModalLabel">
+                                    <i class="fa fa-leaf"></i> New Semester</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="script/newSem.php" method="POST" id="modalForm">
+                                    <div class="modal-body">
+                                        <div class="form-group row">
+
+                                            <label> 
+                                                Semester: 
+                                                <span class="text-bold text-sm text-danger">* </span>
+                                            </label>
+                                            <input type="text" class="form-control" name="sem" id="sem" required >
+ 
+                                        </div>
+                                                                      
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">Cancel</button>
+                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                    </div>
+
+                                </form>
+
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                  
+                   
+                    <table id="semester_tbl" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Semester</th>
+                                <th class="col-md-2">Option</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <?php
+                                if(mysqli_num_rows($semester) > 0)
+                                {
+                                    while($sem = mysqli_fetch_assoc($semester))
+                                    { ?>
+                                        <tr>
+                                            <td><?php echo $sem['semester']; ?> </td>
+                                            <td>
+                                                <a class="btn btn-primary form-control" data-toggle="modal" data-target="#editYearlvl<?php echo $sem['semID']; ?>"> <i class="fa fa-edit"></i> </a>
+                    
+                                                <!-- Edit year level -->
+                                                    <div class="modal fade" id="editYearlvl<?php echo $sem['semID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $sem['semID']; ?>" aria-hidden="true">
+                                                        <div class="modal-dialog modal-md" role="document">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title text-bold" id="editModalLabel<?php echo $sem['semID']; ?>">
+                                                                    <i class="fa fa-leaf"></i>  
+                                                                    Update Semester
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form id="editForm<?php echo $sem['semID']; ?>" action="script/updateSem.php" method="POST">
+
+                                                                <input type="text" name="sem_id" class="form-control" value="<?php echo $sem['semID']; ?>" readonly hidden>
+                                                                
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label> 
+                                                                            Year Level: 
+                                                                            <span class="text-bold text-sm text-danger">* </span>
+                                                                        </label>
+                                                                        <input type="text" name="sem" id="sem" class="form-control" required value="<?php echo $sem['semester'];?>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                                                                </div>
+
+                                                            </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                            ?>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            
 
         </section>
         <!-- /.content -->
@@ -127,43 +255,22 @@ include('includes/scripts.php');
 include('includes/footer.php');
 ?>
 <script>
-        
-    // var modal = document.getElementById("newAcadsyr");
-    // var span = document.getElementsByClassName("close")[0];
-    // var cancelButton = document.getElementById("cancelButton");
-    // var form = document.getElementById("modalForm");
-
-    
-    // var fromInput = document.getElementById("_from");
-    // var toInput = document.getElementById("_to");
-
-    // var currentYear = new Date().getFullYear();
-    // fromInput.max = currentYear;
-    // fromInput.min = currentYear;
-
-    // toInput.max = currentYear + 1;
-
-    // fromInput.addEventListener('input', function() {
-    //     toInput.min = parseInt(fromInput.value) + 1;
-    // });
-
-    // span.onclick = function() {
-    //     modal.style.display = "none";
-    //     form.reset();
-    // }
-
-    // cancelButton.onclick = function() {
-    //     modal.style.display = "none";
-    //     form.reset();
-    // }
-
-    //script for data tables
-    $(function () 
+   
+   $(function () 
     {
         $("#acads_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["csv", "pdf", "print"]
         }).buttons().container().appendTo('#acads_tbl_wrapper .col-md-6:eq(0)');
+        
+    });
+
+    $(function () 
+    {
+        $("#semester_tbl").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["csv","pdf", "print"]
+        }).buttons().container().appendTo('#semester_tbl_wrapper .col-md-6:eq(0)');
         
     });
 

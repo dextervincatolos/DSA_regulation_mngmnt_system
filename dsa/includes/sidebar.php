@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboard.php" class="nav-link <?php echo $active_page == '' ? 'active' : ''; ?>">
+                        <a href="policy.php" class="nav-link <?php echo $active_page == 'policy' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-balance-scale"></i>
                             <p> Policy Management </p>
                         </a>
@@ -107,13 +107,13 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    <!-- </li>
                     <li class="nav-item">
                         <a href="access_level_chart.php" class="nav-link <?php echo $active_page == 'access_level_chart' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p> Access Levels Chart </p>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
 
