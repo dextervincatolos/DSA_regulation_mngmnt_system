@@ -19,7 +19,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline card-success">
     
     <div class="card-header text-center">
       <a href="login.php" class="h4"> Faculty Login</a>
@@ -58,7 +58,7 @@
         </div>
         <div class="row">
           <div class="col-12 mb-2">
-            <button type="submit" class="btn btn-primary btn-block" name="login" >LOGIN</button>
+            <button type="submit" class="btn btn-success btn-block" name="login" >LOGIN</button>
           </div>
         </div>
         

@@ -23,7 +23,7 @@ include('includes/navbar.php');
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newPolicy">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newPolicy">
                         <i class="fa fa-balance-scale"></i>
                         </a>
                         <!-- add policy modal -->
@@ -65,7 +65,7 @@ include('includes/navbar.php');
                                                 <input type="text" name="policy_sanction[]" class="form-control" required placeholder="Write sanction here">
                                             </div>
                                             <div class="form-group col-md-1">
-                                                <button class="form-control btn btn-primary btn-sm create_new_sanction"><i class="fa fa-plus"></i></button>
+                                                <button class="form-control btn btn-success btn-sm create_new_sanction"><i class="fa fa-plus"></i></button>
                                             </div>
 
                                         </div>
@@ -75,7 +75,7 @@ include('includes/navbar.php');
                                 <div class="modal-footer">
                                     
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" name="save_policy" class="btn btn-primary">Save</button>
+                                    <button type="submit" name="save_policy" class="btn btn-success">Save</button>
                                 </div>
 
                             </form>

@@ -30,7 +30,7 @@ $semester = mysqli_query($connection, $getSemester);
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newAcadsyr">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newAcadsyr">
                         <i class="fa fa-calendar-check"></i>
                         </a>
                         <!-- Create new Academic Year modal -->
@@ -77,7 +77,7 @@ $semester = mysqli_query($connection, $getSemester);
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">Cancel</button>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                     </div>
 
                                 </form>
@@ -131,7 +131,7 @@ $semester = mysqli_query($connection, $getSemester);
                  <h4>Semester:</h4>
 
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newSem">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newSem">
                         <i class="fa fa-leaf"></i>  
                         </a>
                         <!-- Create new Academic Year modal -->
@@ -161,7 +161,7 @@ $semester = mysqli_query($connection, $getSemester);
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">Cancel</button>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                     </div>
 
                                 </form>
@@ -190,7 +190,7 @@ $semester = mysqli_query($connection, $getSemester);
                                         <tr>
                                             <td><?php echo $sem['semester']; ?> </td>
                                             <td>
-                                                <a class="btn btn-primary form-control" data-toggle="modal" data-target="#editYearlvl<?php echo $sem['semID']; ?>"> <i class="fa fa-edit"></i> </a>
+                                                <a class="btn btn-success form-control" data-toggle="modal" data-target="#editYearlvl<?php echo $sem['semID']; ?>"> <i class="fa fa-edit"></i> </a>
                     
                                                 <!-- Edit year level -->
                                                     <div class="modal fade" id="editYearlvl<?php echo $sem['semID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $sem['semID']; ?>" aria-hidden="true">
@@ -221,7 +221,7 @@ $semester = mysqli_query($connection, $getSemester);
 
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                                                                    <button type="submit" name="update" class="btn btn-success">Update</button>
                                                                 </div>
 
                                                             </form>

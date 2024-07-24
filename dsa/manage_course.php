@@ -37,7 +37,7 @@ if ($department->num_rows > 0) {
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newCourse">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newCourse">
                         <i class="fa fa-graduation-cap"></i>
                         </a>
                         <!-- register course modal -->
@@ -82,7 +82,7 @@ if ($department->num_rows > 0) {
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                     </div>
 
                                 </form>
@@ -118,7 +118,7 @@ if ($department->num_rows > 0) {
                                             <td> <?php echo $course['course_desc']; ?> </td>
                                             <td> <?php echo $course['dept_desc']; ?> </td>
                                             <td>
-                                                <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
+                                                <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
                     
                                                 <!-- Edit Course -->
                                                     <div class="modal fade" id="editCourse<?php echo $course['courseID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $course['courseID']; ?>" aria-hidden="true">

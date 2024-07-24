@@ -50,36 +50,6 @@
   $sys_mngmnt_pages = ['manage_user', 'manage_college', 'manage_course', 'manage_yearlvl', 'manage_acadsyear'];
   $report_pages = ['report_analytics', 'report_custom', 'report_activity'];
 
-  //Get Daily violation from database.
-  $daily_violation = "SELECT DATE(created_at) AS date, COUNT(*) AS daily_count
-                      FROM violation_tbl
-                      GROUP BY DATE(created_at)
-                      ORDER BY date DESC";
-  $daily_result = $connection->query($daily_violation);
-  $daily_count = mysqli_num_rows($daily_result);
-  
-  //weekly count
-  $weekly_violation ="SELECT YEARWEEK(created_at, 1) AS week, COUNT(*) AS weekly_count
-                      FROM violation_tbl
-                      GROUP BY YEARWEEK(created_at, 1)
-                      ORDER BY week DESC"; 
-  $weekly_result = $connection->query($weekly_violation);
-  $weekly_count = mysqli_num_rows($weekly_result);
-
-  //Monthly violation
-  $monthly_violation ="SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS monthly_count
-                      FROM violation_tbl
-                      GROUP BY DATE_FORMAT(created_at, '%Y-%m')
-                      ORDER BY month DESC";
-  $monthly_result = $connection->query($monthly_violation);
-  $monthly_count = mysqli_num_rows($monthly_result);
-
-  //Monthly violation
-  $alltime_violation ="SELECT * FROM violation_tbl";
-  $alltime_result = $connection->query($alltime_violation);
-  $alltime_count = mysqli_num_rows($alltime_result);
-
-
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

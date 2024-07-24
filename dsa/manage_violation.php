@@ -95,7 +95,7 @@ if ($Sy && $Sy->num_rows > 0) {
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newStudent">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newStudent">
                         <i class="fa fa-paw"></i>
                         </a>
                         <!-- add student modal -->
@@ -158,10 +158,14 @@ if ($Sy && $Sy->num_rows > 0) {
                                                 <select class="form-control selectpicker" name="policySanction" id="policySanction" data-live-search="true" data-size="5" title="Search Sanction..." data-width="100%" required>
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label>Reamarks: <small class="text-danger"> <i> (Example: First Offense)</i> </small> </label>
+                                                <textarea class="form-control" name="remarks" id="remarks" rows="2"></textarea>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                            <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -175,17 +179,19 @@ if ($Sy && $Sy->num_rows > 0) {
                             <tr>
                                 <th>S.Y</th>
                                 <th>Semester</th>
-                                <th>Student name</th>
-                                <th>Year Level</th>
+                                <th>Violator</th>
+                                <th>Year</th>
                                 <th>Violation</th>
                                 <th>Sanction</th>
-                                <th>Department</th>
+                                <th>College</th>
                                 <th>Course</th>
                                 <th>Status</th>
+                                <th>Remarks</th>
                                 <th>Added by</th>
+                                <th>Updated by</th>
                                 <th>Date Issued</th>
                                 <th>Updated_at</th>
-                                <th>View record</th>
+                                <th><i class="fa fa-cog"></i></th>
                                 
                             </tr>
                         </thead>
@@ -207,11 +213,13 @@ if ($Sy && $Sy->num_rows > 0) {
                                             <td> <?php echo $violation['dept_name']; ?> </td>
                                             <td> <?php echo $violation['course_name']; ?> </td>
                                             <td> <?php echo $violation['violation_status']; ?> </td>
-                                            <td> <?php echo $violation['added_by']; ?> </td>
+                                            <td> <?php echo $violation['remarks']; ?> </td>
+                                            <td> <?php echo $violation['violation_added_by']; ?> </td>
+                                            <td> <?php echo $violation['violation_updated_by']; ?> </td>
                                             <td> <?php echo $violation['created_at']; ?> </td>
                                             <td> <?php echo $violation['updated_at']; ?> </td>
                                             <td>
-                                                <a class="btn btn-warning form-control" href="view_student.php?id=<?php echo$violation['studID']; ?>"> View <i class="fa fa-user-circle"></i> </i></a>
+                                                <a class="btn btn-warning form-control" href="update_violation.php?id=<?php echo$violation['violationID']; ?>" title="Manage Violation"> <i class="fas fa-cogs"></i></a>
                                             </td>
 
                                         </tr>

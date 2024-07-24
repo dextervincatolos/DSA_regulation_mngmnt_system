@@ -3,6 +3,37 @@ $pageTitle = 'Dashboard';
 include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');
+
+
+  //Get Daily violation from database.
+  $daily_violation = "SELECT DATE(created_at) AS date, COUNT(*) AS daily_count
+                      FROM violation_tbl
+                      GROUP BY DATE(created_at)
+                      ORDER BY date DESC";
+  $daily_result = $connection->query($daily_violation);
+  $daily_count = mysqli_num_rows($daily_result);
+  
+  //weekly count
+  $weekly_violation ="SELECT YEARWEEK(created_at, 1) AS week, COUNT(*) AS weekly_count
+                      FROM violation_tbl
+                      GROUP BY YEARWEEK(created_at, 1)
+                      ORDER BY week DESC"; 
+  $weekly_result = $connection->query($weekly_violation);
+  $weekly_count = mysqli_num_rows($weekly_result);
+
+  //Monthly violation
+  $monthly_violation ="SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS monthly_count
+                      FROM violation_tbl
+                      GROUP BY DATE_FORMAT(created_at, '%Y-%m')
+                      ORDER BY month DESC";
+  $monthly_result = $connection->query($monthly_violation);
+  $monthly_count = mysqli_num_rows($monthly_result);
+
+  //alltime violation
+  $alltime_violation ="SELECT * FROM violation_tbl";
+  $alltime_result = $connection->query($alltime_violation);
+  $alltime_count = mysqli_num_rows($alltime_result);
+
 ?>
 
     <!-- Main Sidebar Container -->
@@ -23,7 +54,7 @@ include('includes/navbar.php');
                 <div class="row">
                     <!-- Students -->
                     <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
+                        <div class="small-box bg-teal">
                             <div class="inner">
                                 <?php
                                     echo '<h3>'.$daily_count.'</h3>';
@@ -38,7 +69,7 @@ include('includes/navbar.php');
                     </div>
                      <!-- settled Violations -->
                     <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
+                        <div class="small-box bg-teal">
                             <div class="inner">
                                 <?php
                                     echo '<h3>'.$weekly_count.'</h3>';
@@ -54,7 +85,7 @@ include('includes/navbar.php');
                     <!-- ./settled violations -->
                     <!-- unsettled Violation -->
                     <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
+                        <div class="small-box bg-teal">
                             <div class="inner">
                                 <?php
                                     echo '<h3>'.$monthly_count.'</h3>';
@@ -70,7 +101,7 @@ include('includes/navbar.php');
                     <!-- ./unsettled Violation -->
                     <!-- unsettled Violation -->
                     <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
+                        <div class="small-box bg-warning">
                             <div class="inner">
                                 <?php
                                     echo '<h3>'.$alltime_count.'</h3>';
@@ -91,7 +122,7 @@ include('includes/navbar.php');
                 <div class="row">
                     <!-- health chart -->
                     <div class="col-md-6">
-                        <div class="card card-primary card-outline">
+                        <div class="card card-green card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Total Number of Violation Reported</h3>
 
@@ -113,7 +144,7 @@ include('includes/navbar.php');
 
                     <!-- educ chart -->
                     <div class="col-md-6">
-                        <div class="card card-info card-outline">
+                        <div class="card card-green card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Distribution of Violation by Department</h3>
 

@@ -27,7 +27,7 @@ $yrlvl = mysqli_query($connection, $getyearlvl);
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#newYearlvl">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newYearlvl">
                         <i class="fa fa-calendar"></i>
                         </a>
                         <!-- register year level modal -->
@@ -55,7 +55,7 @@ $yrlvl = mysqli_query($connection, $getyearlvl);
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                     </div>
 
                                 </form>
@@ -87,7 +87,7 @@ $yrlvl = mysqli_query($connection, $getyearlvl);
                                         <tr>
                                             <td> <?php echo $yearlvl['year_lvl'];?> </td>
                                             <td>
-                                                <a class="btn btn-primary form-control col-md-5" data-toggle="modal" data-target="#editYearlvl<?php echo $yearlvl['yearlvlID']; ?>"> <i class="fa fa-edit"></i> </a>
+                                                <a class="btn btn-success form-control col-md-5" data-toggle="modal" data-target="#editYearlvl<?php echo $yearlvl['yearlvlID']; ?>"> <i class="fa fa-edit"></i> </a>
                     
                                                 <!-- Edit year level -->
                                                     <div class="modal fade" id="editYearlvl<?php echo $yearlvl['yearlvlID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $yearlvl['yearlvlID']; ?>" aria-hidden="true">
@@ -115,7 +115,7 @@ $yrlvl = mysqli_query($connection, $getyearlvl);
 
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                                                                    <button type="submit" name="update" class="btn btn-success">Update</button>
                                                                 </div>
 
                                                             </form>

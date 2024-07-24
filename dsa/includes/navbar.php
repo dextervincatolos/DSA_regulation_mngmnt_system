@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="<?php echo $active_page != 'view_faculty' ? 'main-header' : ''; ?>  navbar navbar-expand navbar-primary navbar-dark">
+<nav class="<?php echo $active_page != 'view_faculty' ? 'main-header' : ''; ?>  navbar navbar-expand navbar-green navbar-dark">
 <!-- Left navbar links -->
 <ul class="navbar-nav">
     <li class="nav-item">
@@ -43,7 +43,7 @@
                 <span class="d-none d-md-inline p-2"><?php echo $_SESSION['role'];?> </span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">Support</span>
+                <span class="dropdown-item dropdown-header"><?php echo $_SESSION['username'] ?></span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                 <i class="fas fa-user mr-3"></i> Profile

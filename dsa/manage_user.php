@@ -23,7 +23,7 @@ $res = mysqli_query($connection, $faculty);
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-primary float-right" data-toggle="modal" data-target="#adduserprofile">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#adduserprofile">
                             <i class="fa fa-user-plus"></i>
                         </a>
                         <!-- add user modal -->
@@ -108,7 +108,7 @@ $res = mysqli_query($connection, $faculty);
                                     <div class="modal-footer">
                                        
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Save</button>
+                                        <button type="submit" name="submitForm" class="btn btn-success">Save</button>
                                     </div>
 
                                 </form>

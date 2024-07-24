@@ -13,7 +13,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                        <a href="dashboard.php" class="nav-link <?php echo $active_page == 'dashboard' ? 'active' : ''; ?>">
+                        <a href="dashboard.php" class="nav-link  <?php echo $active_page == 'dashboard' ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p> Dashboard </p>
                         </a>
