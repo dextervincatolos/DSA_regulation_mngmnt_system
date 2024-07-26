@@ -45,7 +45,6 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#services">SJCBI</a></li>
           <li><a class="nav-link scrollto" href="https://sjcbi.edu.ph" target="_blank"><span>SJCBI Website <i class="bx bx-link-external"></i></span></a></li>
-          <li><a class="nav-link scrollto" href="#team">Our Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -96,7 +95,7 @@
               <div class="icon">
                 <i class="bx bx-news"></i>
               </div>
-              <h4><a href="health_page.php">NEWS OR BULLETIN</a></h4>
+              <h4><a href="https://sjcbi.edu.ph" target="_blank">NEWS OR BULLETIN</a></h4>
             </div>
           </div>
 
@@ -105,7 +104,7 @@
               <div class="icon">
                 <i class="bx bx-book-reader"></i>
               </div>
-              <h4><a href="education_page.php">SCHOOL POLICIES</a></h4>
+              <h4><a href="https://sjcbi.edu.ph" target="_blank">SCHOOL POLICIES</a></h4>
             </div>
           </div>
 
@@ -114,7 +113,7 @@
               <div class="icon">
                 <i class="bx bx-book-alt"></i>
               </div>
-              <h4><a href="agriculture_page.php">COURSE CATALOG</a></h4>
+              <h4><a href="https://sjcbi.edu.ph/academics/" target="_blank">COURSE CATALOG</a></h4>
             </div>
           </div>
 
@@ -123,7 +122,7 @@
               <div class="icon">
                 <i class="bx bx-calendar-event"></i>
               </div>
-              <h4><a href="livelihood_page.php">SCHOOL CALENDAR</a></h4>
+              <h4><a href="https://sjcbi.edu.ph" target="_blank">SCHOOL CALENDAR</a></h4>
             </div>
           </div>
 
@@ -133,75 +132,8 @@
     </section>
     <!-- End SJBC Section -->
 
-    <!-- Team Section -->
-    <section id="team" class="team section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>OUR TEAM</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 mt-4" data-aos="zoom-in" data-aos-delay="400">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Juan Dela cruz</h4>
-               <span>Intern Software Developer</span>
-                <p></p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4" data-aos="zoom-in" data-aos-delay="400">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Diwata</h4>
-                <span>Intern Software Developer</span>
-                <p></p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4" data-aos="zoom-in" data-aos-delay="400">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>John Doe</h4>
-                <span>Intern Software Developer</span>
-                <p></p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">

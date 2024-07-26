@@ -25,7 +25,7 @@ include('includes/navbar.php');
                             <!-- Widget: user widget style 1 -->
                             <div class="card card-widget widget-user">
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                                <div class="widget-user-header text-white" style="background-color:cornflowerblue;">
+                                <div class="widget-user-header text-white" style="background-color:#20c997;">
                                     <h3 class="widget-user-username text-right"><?php echo $row['faculty_fname'].' '.$row['faculty_mname'].' '.$row['faculty_lname']; ?></h3>
                                     <h5 class="widget-user-desc text-right"><?php echo $row['faculty_role'] ?></h5>
                                 </div>  
@@ -36,12 +36,12 @@ include('includes/navbar.php');
                                     <div class="row">
                                         <ul class="nav col-md-12" id="custom-content-above-tab" role="tablist">
                                             
-                                            <li class="nav-item col-md-4">
+                                            <li class="nav-item col-md-3">
                                                 <a class="nav-link" id="update-tab" data-toggle="pill" href="#user-update" role="tab" aria-controls="user-update" aria-selected="false">
                                                     <div class="border-right">
                                                         <div class="description-block">
                                                             <h1 class="text-warning"><i class="fa fa-cog"></i></h1>
-                                                            <span class="description-text">UPDATE RECORD</span>
+                                                            <span class="description-text text-teal">UPDATE RECORD</span>
                                                         </div>
                                                         <!-- /.description-block -->
                                                     </div>
@@ -49,12 +49,12 @@ include('includes/navbar.php');
                                                 </a>
                                             </li>
 
-                                            <li class="nav-item col-md-4">
+                                            <li class="nav-item col-md-3">
                                                 <a class="nav-link" id="activity-tab" data-toggle="pill" href="#user-activity" role="tab" aria-controls="user-activity" aria-selected="false">
                                                     <div class="border-right">
                                                         <div class="description-block">
                                                             <h1 class="text-warning"><i class="fa fa-history"></i></h1>
-                                                            <span class="description-text">ACTIVITY LOGS</span>
+                                                            <span class="description-text text-teal">ACTIVITY LOGS</span>
                                                         </div>
                                                         <!-- /.description-block -->
                                                     </div>
@@ -62,12 +62,24 @@ include('includes/navbar.php');
                                                 </a>
                                             </li>
 
-                                            <li class="nav-item col-md-4">
+                                            <li class="nav-item col-md-3">
                                                 <a class="nav-link" id="deactivate-tab" data-toggle="pill" href="#deactivate-user" role="tab" aria-controls="deactivate-user" aria-selected="false">
-                                                    <div class="">
+                                                    <div class="border-right">
                                                         <div class="description-block">
                                                             <h1 class="text-danger"><i class="fa fa-user-times"></i></h1>
-                                                            <span class="description-text">DEACTIVATE</span>
+                                                            <span class="description-text text-teal">DEACTIVATE</span>
+                                                        </div>
+                                                        <!-- /.description-block -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </a>
+                                            </li>
+                                            <li class="nav-item col-md-3">
+                                                <a class="nav-link" href="manage_user.php">
+                                                    <div>
+                                                        <div class="description-block">
+                                                            <h1 class="text-warning"><i class="fa fa-share-square"></i></h1>
+                                                            <span class="description-text text-teal">GO BACK</span>
                                                         </div>
                                                         <!-- /.description-block -->
                                                     </div>
@@ -87,16 +99,17 @@ include('includes/navbar.php');
                 </div>
                 <!-- /.container-fluid -->
                  <div class="mx-5 px-3">
-                    <div class="card card-primary card-outline" style="min-height: 500px;">                        
+                    <div class="card card-success card-outline" style="min-height: 500px;">                        
                         <div class="card-body">                            
                             <div class="tab-content" id="custom-content-above-tabContent">
                                 <div class="tab-pane fade active show" id="user-update" role="tabpanel" aria-labelledby="update-tab">
                                     <div class="tab-custom-content">
-                                        <label class="lead mb-0 text-info"> <i class="fa fa-user"> </i>  User Information:</label>
+                                        <label class="lead mb-0 text-green"> <i class="fa fa-user"> </i>  User Information:</label>
                                     </div>                          
                                     
                                     <form action="script/updateFaculty.php" method="POST">
                                         <div class="modal-body">
+                                            <input type="text" name="userID" id="userID" class="form-control" value="<?php echo $row['userID'] ?>" required readonly hidden>
                                             <div class="form-group col-md-4">
                                                 <label> 
                                                     Faculty ID: 
@@ -139,7 +152,7 @@ include('includes/navbar.php');
                                                         Contact No.
                                                         <span class="text-bold text-sm text-danger">*</span> 
                                                     </label>
-                                                    <input type="number" name="facultyContact" id="facultyContact" class="form-control" value="<?php echo $row['faculty_contact'] ?>" required>
+                                                    <input type="text" name="facultyContact" id="facultyContact" class="form-control" value="<?php echo $row['faculty_contact'] ?>" pattern="^09\d{9}$" title="Please enter a valid phone no. (e.g., 09123456789)" required>
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label> 
@@ -158,24 +171,32 @@ include('includes/navbar.php');
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <label> 
-                                                        Password: 
+                                                        Old Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="facultyPassword" id="facultyPassword" class="form-control" required>
+                                                    <input type="password" name="facultyOldpassword" id="facultyOldpassword" class="form-control">
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <label> 
-                                                        Confirm Password: 
+                                                        New Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="confPassword" id="confPassword" class="form-control" required>
+                                                    <input type="password" name="facultyNewpassword" id="facultyNewpassword" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{8,}" 
+                                                    title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label> 
+                                                        Confirm New Password: 
+                                                        <span class="text-bold text-sm text-danger">* </span>
+                                                    </label>
+                                                    <input type="password" name="confPassword" id="confPassword" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <button type="submit" name="submitForm" class="btn btn-primary form-control">UPDATE ACCOUNT INFORMATION</button>
+                                        <button type="submit" name="update" class="btn btn-success form-control">UPDATE ACCOUNT INFORMATION</button>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="user-activity" role="tabpanel" aria-labelledby="activity-tab">

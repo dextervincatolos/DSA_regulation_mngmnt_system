@@ -104,7 +104,8 @@
                                                         Contact No.
                                                         <span class="text-bold text-sm text-danger">*</span> 
                                                     </label>
-                                                    <input type="number" name="studentContact" id="studentContact" class="form-control" required>
+                                                    <!-- <input type="number" name="studentContact" id="studentContact" class="form-control" required> -->
+                                                    <input type="text" name="studentContact" id="studentContact" class="form-control" pattern="^09\d{9}$" title="Please enter a valid phone no. (e.g., 09123456789)" required>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label> 

@@ -45,7 +45,7 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header"><?php echo $_SESSION['username'] ?></span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="view_faculty.php?id=<?php echo $_SESSION['uid']; ?>" class="dropdown-item">
                 <i class="fas fa-user mr-3"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>
