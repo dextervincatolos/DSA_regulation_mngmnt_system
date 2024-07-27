@@ -6,6 +6,12 @@ include('includes/navbar.php');
 
     $getUSer = "SELECT * FROM  user_tbl WHERE userID =".$_GET['id'];
     $res = mysqli_query($connection, $getUSer);
+
+    $getActivities = "SELECT * FROM activity_logs_tbl WHERE userID = ".$_GET['id'];
+    $activity = mysqli_query($connection, $getActivities);
+
+
+
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="wrapper" style="min-height: 870px;">
@@ -16,9 +22,17 @@ include('includes/navbar.php');
 
         <!-- Main content -->
         <section class="content">
+        
             <?php 
                             
              while($row = mysqli_fetch_assoc($res)) { ?>
+             <div class="watermark <?php echo $row['user_status'] == 'deactivated' ? 'Isdeactivated' : ''; ?>" id="watermark">
+            <h1><i class="fa fa-ban"></i></h1>
+            <h1 class="deactivation-text">This account is permanently deactivated!</h1>
+            <a class="nav-link" href="manage_user.php">                                  
+                <h5 class="text-primary"> <span class="description-text">GO BACK</span> <i class="fa fa-share-square"></i></h1>
+            </a>
+        </div>
                 <div class="container-fluid">
                     <div class="mx-5">
                         <div class="col-md-12">
@@ -63,7 +77,7 @@ include('includes/navbar.php');
                                             </li>
 
                                             <li class="nav-item col-md-3">
-                                                <a class="nav-link" id="deactivate-tab" data-toggle="pill" href="#deactivate-user" role="tab" aria-controls="deactivate-user" aria-selected="false">
+                                                <a class="nav-link" data-toggle="modal" data-target="<?php echo $row['faculty_role'] == 'DSA-Admin' ? '' : '#deactivateUser'; ?>" style="cursor:pointer;" >
                                                     <div class="border-right">
                                                         <div class="description-block">
                                                             <h1 class="text-danger"><i class="fa fa-user-times"></i></h1>
@@ -73,6 +87,36 @@ include('includes/navbar.php');
                                                     </div>
                                                     <!-- /.col -->
                                                 </a>
+
+                    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deactivateUser" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header btn-danger">
+                            <h5 class="modal-title" id="deactivateModalLabel"><i class="fa fa-user-times"></i> Deactivate Account:</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="script/deactivateUser.php" method="POST">
+                            <div class="modal-body">
+                                <h1 class="text-center"><i class="fa fa-exclamation-triangle text-danger"></i></h1>
+                                <h5 class="text-center text-danger">Are you sure you want to deactivate your account? Please enter your password to confirm.</h5>
+                                <input type="hidden" name="userID" class="form-control" value="<?php echo $row['userID'];?>" readonly required>
+                                <input type="password" name="admin_password" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger" name="deactivate">Deactivate</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
                                             </li>
                                             <li class="nav-item col-md-3">
                                                 <a class="nav-link" href="manage_user.php">
@@ -176,22 +220,21 @@ include('includes/navbar.php');
                                                         Old Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="facultyOldpassword" id="facultyOldpassword" class="form-control">
+                                                    <input type="password" name="facultyOldpassword" id="facultyOldpassword" class="form-control" <?php echo $row['userID'] != $_SESSION['uid'] ? 'disabled' : ''; ?>>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label> 
                                                         New Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="facultyNewpassword" id="facultyNewpassword" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{8,}" 
-                                                    title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number">
+                                                    <input type="password" name="facultyNewpassword" id="facultyNewpassword" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{8,}" <?php echo $row['userID'] != $_SESSION['uid'] ? 'disabled' : ''; ?> title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label> 
                                                         Confirm New Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="confPassword" id="confPassword" class="form-control">
+                                                    <input type="password" name="confPassword" id="confPassword" class="form-control" <?php echo $row['userID'] != $_SESSION['uid'] ? 'disabled' : ''; ?>>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,12 +251,31 @@ include('includes/navbar.php');
                                     <table id="activity_tbl" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Activity</th>
                                                 <th>Remarkscode </th>
                                                 <th>Timestamp</th>
                                                 
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            <?php
+                                            if(mysqli_num_rows($activity) > 0) {
+                                                while($log = mysqli_fetch_assoc($activity)) { ?>
+
+                                                    <tr>
+                                                        
+                                                        <td class="text-center" >
+                                                            #
+                                                        </td>
+                                                        <td> <?php echo $log['_activity']; ?> </td>
+                                                        <td> <?php echo $log['_status']; ?> </td>
+                                                        <td> <?php echo $log['activity_created_at'];?> </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            } ?>
+                                        </tbody>
                                         
                                         <tbody>
                                                                                         

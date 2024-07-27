@@ -39,7 +39,37 @@
 
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../assets/css/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <style>
 
+    .content {
+        position: relative;
+    }
+
+    .watermark {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+        color: red;
+        font-size: 2em;
+        text-align: center;
+        padding-top: 20%;
+        z-index: 1000; /* Ensure it covers the content */
+        /* pointer-events: none; Allow clicking through the watermark */
+    }
+
+    .watermark h1{
+    opacity: 0.5; /* Lower the opacity of the text */
+}
+
+.watermark.Isdeactivated{
+  display: block;
+}
+    
+  </style>
 
 </head>
 <?php 

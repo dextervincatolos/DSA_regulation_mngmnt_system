@@ -36,7 +36,7 @@
   <!-- Header -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
-      <a href="homepage.php" class="logo me-auto">DEAN OF STUDENTS AFFAIRS</a>
+      <a href="#" class="logo me-auto">DEAN OF STUDENTS AFFAIRS</a>
      
       <!-- Uncomment below if you prefer to use an image logo -->
       

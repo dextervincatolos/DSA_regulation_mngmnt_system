@@ -82,7 +82,7 @@
                                                         Contact No.
                                                         <span class="text-bold text-sm text-danger">*</span> 
                                                     </label>
-                                                    <input type="number" name="facultyContact" id="facultyContact" class="form-control" required>
+                                                    <input type="text" name="facultyContact" id="facultyContact" class="form-control" pattern="^09\d{9}$" title="Please enter a valid phone no. (e.g., 09123456789)" required>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                 <label> 
@@ -144,10 +144,10 @@
                                                                 echo 'text-success';
                                                                 break;
                                                             case 'offline':
-                                                                echo 'text-warning';
+                                                                echo 'text-danger';
                                                                 break;
                                                             case 'deactivated':
-                                                                echo 'text-danger';
+                                                                echo 'text-warning';
                                                                 break;
                                                             default:
                                                                 echo 'text-light';
