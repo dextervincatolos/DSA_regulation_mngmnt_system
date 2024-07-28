@@ -91,7 +91,7 @@
                                 <th>Course Name</th>
                                 <th>Description</th>
                                 <th>Department</th>
-                                <th>View record</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,8 +105,11 @@
                                         <td> <?php echo $course['dept_desc']; ?> </td>
                                         <td>
                                             <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
-                                            <!-- Edit Course -->
-                                            <div class="modal fade" id="editCourse<?php echo $course['courseID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $course['courseID']; ?>" aria-hidden="true">
+                                            <a class="btn btn-danger form-control col-md-5" href="script/deleteCourse.php?id=<?php echo $course['courseID']; ?>" onclick="return confirm('Are you sure you want to delete this Course?');"> <i class="fa fa-trash"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Edit Course -->
+                                    <div class="modal fade" id="editCourse<?php echo $course['courseID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $course['courseID']; ?>" aria-hidden="true">
                                                 <div class="modal-dialog modal-md" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -151,9 +154,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a class="btn btn-danger form-control col-md-5" href="script/deleteCourse.php?id=<?php echo $course['courseID']; ?>" onclick="return confirm('Are you sure you want to delete this Course?');"> <i class="fa fa-trash"></i> </a>
-                                        </td>
-                                    </tr>
                                     <?php
                                 }
                             } ?>
@@ -174,12 +174,57 @@ include('includes/footer.php');
 ?>
 
 <script>
-    //script for data tables
-    $(function () 
-    {
+    $(function () {
+        var currentDate = new Date();
+        var formattedDate = currentDate.toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
         $("#course_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'DSA courses report ' + formattedDate
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'DSA courses report ' + formattedDate
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'DSA courses report ' + formattedDate,
+                customize: function (doc) {
+                    doc.content.splice(0, 1, {
+                        text: [
+                            { text: 'DSA courses report\n', fontSize: 14, bold: true,alignment: 'center'},
+                            { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
+                            { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                        ],
+                        margin: [0, 0, 0, 12]
+                    });
+                }
+            },
+            {
+                extend: 'print',
+                title: '',
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '10pt')
+                        .prepend(
+                            '<div style="text-align: center; font-size: 14pt;">DSA courses report</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
+                        );
+                }
+            },
+            {
+                extend:'colvis'
+            }
+        ],
         }).buttons().container().appendTo('#course_tbl_wrapper .col-md-6:eq(0)');
         
     });

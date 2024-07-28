@@ -30,7 +30,7 @@
                         <div class="modal fade" id="adduserprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header btn-success">
                                         <h5 class="modal-title text-bold" id="exampleModalLabel"><i class="fa fa-user-plus"></i> Register User</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -184,12 +184,68 @@
     include('includes/footer.php');
 ?>
 <script>
-    //script for data tables
+    // //script for data tables
+    // $(function () 
+    // {
+    //     $("#user_tbl").DataTable({
+    //     "responsive": true, "lengthChange": false, "autoWidth": false,
+    //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //     }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
+        
+    // });
+
     $(function () 
     {
+        var currentDate = new Date();
+        var formattedDate = currentDate.toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
         $("#user_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'DSA user Report ' + formattedDate
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'DSA user Report ' + formattedDate
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'DSA user Report ' + formattedDate,
+                customize: function (doc) {
+                    doc.content.splice(0, 1, {
+                        text: [
+                            { text: 'DSA user Report\n', fontSize: 14, bold: true,alignment: 'center'},
+                            { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
+                            { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                        ],
+                        margin: [0, 0, 0, 12]
+                    });
+                }
+            },
+            {
+                extend: 'print',
+                title: '',
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '10pt')
+                        .prepend(
+                            '<div style="text-align: center; font-size: 14pt;">DSA user Report</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
+                        );
+                }
+            },
+            {
+                 extend:'colvis'
+            }
+        ],
         }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
         
     });

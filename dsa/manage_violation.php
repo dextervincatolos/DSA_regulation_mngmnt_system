@@ -12,7 +12,8 @@
         JOIN schoolpolicy_tbl ON violation_tbl.spID = schoolpolicy_tbl.spID 
         JOIN yearlvl_tbl ON violation_tbl.yearlvlID = yearlvl_tbl.yearlvlID 
         JOIN department_tbl ON student_tbl.college = department_tbl.deptID
-        JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID";
+        JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID
+        WHERE violation_status = 'Open'";
 
     $violationlist = mysqli_query($connection, $getViolations);
     //Get Students
@@ -181,12 +182,9 @@
                                 <th>Sanction</th>
                                 <th>College</th>
                                 <th>Course</th>
-                                <th>Status</th>
                                 <th>Remarks</th>
                                 <th>Added by</th>
-                                <th>Updated by</th>
                                 <th>Date Issued</th>
-                                <th>Updated_at</th>
                                 <th><i class="fa fa-cog"></i></th>
                                 
                             </tr>
@@ -206,14 +204,37 @@
                                         <td> <?php echo $violation['sanction'];?> </td>
                                         <td> <?php echo $violation['dept_name']; ?> </td>
                                         <td> <?php echo $violation['course_name']; ?> </td>
-                                        <td> <?php echo $violation['violation_status']; ?> </td>
                                         <td> <?php echo $violation['remarks']; ?> </td>
                                         <td> <?php echo $violation['violation_added_by']; ?> </td>
-                                        <td> <?php echo $violation['violation_updated_by']; ?> </td>
-                                        <td> <?php echo $violation['created_at']; ?> </td>
-                                        <td> <?php echo $violation['updated_at']; ?> </td>
+                                        <td> <?php echo date('Y-m-d', strtotime($violation['created_at'])); ?> </td>
                                         <td>
-                                            <a class="btn btn-warning form-control" href="update_violation.php?id=<?php echo$violation['violationID']; ?>" title="Manage Violation"> <i class="fas fa-cogs"></i></a>
+                                            <a class="btn btn-warning form-control" data-toggle="modal" data-target="#resolveViolation_<?php echo $violation['violationID']; ?>" title="Manage Violation"> Process</a>
+                                                
+                                            <div class="modal fade" id="resolveViolation_<?php echo $violation['violationID']; ?>" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header btn-success">
+                                                    <h5 class="modal-title" id="deactivateModalLabel"> <i class="fa fa-check-square"></i> Close Violation:</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="script/updateViolation.php" method="POST">
+                                                    <div class="modal-body">
+                                                        <h1 class="text-center"><i class="fa fa-question-circle text-success"></i></h1>
+                                                        <h5 class="text-center text-success">Resolve Violation?</h5>
+                                                        <input type="hidden" name="violationID" class="form-control" value="<?php echo $violation['violationID']; ?>" readonly required>
+                                                        <input type="password" name="user_password" class="form-control" placeholder="Enter your password">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-success" name="processViolation">Resolve</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            
                                         </td>
                                     </tr>
                                     <?php
@@ -239,13 +260,60 @@
 ?>
 
 <script>
-    //script for data tables
+
     $(function () 
-    {
-        $("#violation_tbl").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#violation_tbl_wrapper .col-md-6:eq(0)');
-        
+{
+    var currentDate = new Date();
+    var formattedDate = currentDate.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     });
+    
+    $("#violation_tbl").DataTable({
+    "responsive": true, "lengthChange": false, "autoWidth": false,
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            extend: 'excelHtml5',
+            title: 'DSA Student violations report ' + formattedDate
+        },
+        {
+            extend: 'csvHtml5',
+            title: 'DSA Student violations report ' + formattedDate
+        },
+        {
+            extend: 'pdfHtml5',
+            title: 'DSA Student violations report ' + formattedDate,
+            customize: function (doc) {
+                doc.content.splice(0, 1, {
+                    text: [
+                        { text: 'DSA Student violations report\n', fontSize: 14, bold: true,alignment: 'center'},
+                        { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
+                        { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                    ],
+                    margin: [0, 0, 0, 12]
+                });
+            }
+        },
+        {
+            extend: 'print',
+            title: '',
+            customize: function (win) {
+                $(win.document.body)
+                    .css('font-size', '10pt')
+                    .prepend(
+                        '<div style="text-align: center; font-size: 14pt;">DSA Student violations report</div>' +
+                        '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
+                        '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
+                    );
+            }
+        },
+        {
+             extend:'colvis'
+        }
+    ],
+    }).buttons().container().appendTo('#violation_tbl_wrapper .col-md-6:eq(0)');
+    
+});
 </script>
