@@ -1,18 +1,23 @@
 <?php
 include('../sessions.php');
 
-// Check if the `id` parameter is set in the URL
-if (isset($_GET['id'])) {
+ // Check if the `id` parameter is set in the URL
+ if (isset($_GET['id'])) {
 
-    // Get the department ID from the URL
-    $deptID = intval($_GET['id']);
+     // Get the department ID from the URL
+     $deptID = intval($_GET['id']);
 
-    // Prepare and execute the deletion query
-    $query = "DELETE FROM department_tbl WHERE deptID = $deptID";
-    $query_run = mysqli_query($connection, $query);
-   
+    $fetchQ = mysqli_query($connection,"SELECT dept_desc FROM department_tbl WHERE deptID =". $deptID);
+    $row = mysqli_fetch_assoc($fetchQ);
 
-    if ($query_run) {
+    $dept_desc = $row['dept_desc'];
+
+    $deleteQ = mysqli_query($connection,"DELETE FROM department_tbl WHERE deptID =".$deptID);  
+
+    if ($deleteQ) {
+
+        $uid = $_SESSION['uid'];
+        mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Deleted department/College ($dept_desc)...','successful') ");
 
         $_SESSION['status'] = "Department Information Deleted successfully!";
         $_SESSION['status_code'] = "success";
@@ -27,6 +32,6 @@ if (isset($_GET['id'])) {
     $_SESSION['status'] = "Department Not Found!";
     $_SESSION['status_code'] = "error";
     header('Location: ../manage_college.php');
-}
+ }
 
-?>
+ ?>

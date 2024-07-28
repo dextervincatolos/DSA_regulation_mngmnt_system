@@ -14,8 +14,9 @@ if(isset($_POST['submitForm']))
     $faculty_ename = $_POST['facultyeName'];
     $faculty_address = $_POST['facultyAddress'];
     $faculty_role = 'DSA-User';
+    $uid = $_SESSION['uid'];
 
-    $countUser = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_role = 'DSA-User' AND user_status != 'Deactivated'");
+    $countUser = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_role = 'DSA-User' AND user_status != 'deactivated'");
 
     if (mysqli_num_rows($countUser) < 2)
     {
@@ -30,12 +31,12 @@ if(isset($_POST['submitForm']))
     
         }else{
 
-            $email_exist = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_email= '$faculty_email' ");
+            $email_exist = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_email= '$faculty_email' || faculty_contact= '$faculty_contact'");
 
             if (mysqli_num_rows($email_exist) > 0)
             {
-                $_SESSION['status'] = "Email exist. Please use another Id number.";
-                $_SESSION['status_code'] = "warning";
+                $_SESSION['status'] = "Email or Phone number exist.";
+                $_SESSION['status_code'] = "error";
                 header('Location: ../manage_user.php');
         
             }else{
@@ -46,6 +47,9 @@ if(isset($_POST['submitForm']))
                 $query_run = mysqli_query($connection, $insertRecord);
         
                 if($query_run) {
+
+                    mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Register new user account...','successfull') ");
+
                     $_SESSION['status'] = "New user account registered!";
                     $_SESSION['status_code'] = "success";
                     header('Location: ../manage_user.php');
@@ -55,48 +59,11 @@ if(isset($_POST['submitForm']))
                     $_SESSION['status_code'] = "error";
                     header('Location: ../manage_user.php');
                 }   
-                    
-
-
-
-                
             }    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
         }
-
-
-
-
-       
-
     }else{
                     
-        $_SESSION['status'] = "Maximum user registration reached!";
+        $_SESSION['status'] = "Maximum user reached!";
         $_SESSION['status_code'] = "warning";
         header('Location: ../manage_user.php');
             

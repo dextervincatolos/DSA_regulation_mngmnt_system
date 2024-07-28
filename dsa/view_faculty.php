@@ -1,17 +1,14 @@
 <?php
-$pageTitle = 'User Information';
-include('sessions.php');
-include('includes/header.php');
-include('includes/navbar.php');
+    $pageTitle = 'User Information';
+    include('sessions.php');
+    include('includes/header.php');
+    include('includes/navbar.php');
 
     $getUSer = "SELECT * FROM  user_tbl WHERE userID =".$_GET['id'];
     $res = mysqli_query($connection, $getUSer);
 
     $getActivities = "SELECT * FROM activity_logs_tbl WHERE userID = ".$_GET['id'];
     $activity = mysqli_query($connection, $getActivities);
-
-
-
     ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="wrapper" style="min-height: 870px;">
@@ -23,22 +20,19 @@ include('includes/navbar.php');
         <!-- Main content -->
         <section class="content">
         
-            <?php 
-                            
-             while($row = mysqli_fetch_assoc($res)) { ?>
-             <div class="watermark <?php echo $row['user_status'] == 'deactivated' ? 'Isdeactivated' : ''; ?>" id="watermark">
-            <h1><i class="fa fa-ban"></i></h1>
-            <h1 class="deactivation-text">This account is permanently deactivated!</h1>
-            <a class="nav-link" href="manage_user.php">                                  
-                <h5 class="text-primary"> <span class="description-text">GO BACK</span> <i class="fa fa-share-square"></i></h1>
-            </a>
-        </div>
+            <?php            
+            while($row = mysqli_fetch_assoc($res)) { ?>
+                <div class="watermark <?php echo $row['user_status'] == 'deactivated' ? 'Isdeactivated' : ''; ?>" id="watermark">
+                    <h1><i class="fa fa-ban"></i></h1>
+                    <h1 class="deactivation-text">This account is permanently deactivated!</h1>
+                    <a class="nav-link" href="manage_user.php">                                  
+                        <h5 class="text-primary"> <span class="description-text">GO BACK</span> <i class="fa fa-share-square"></i></h1>
+                    </a>
+                </div>
                 <div class="container-fluid">
                     <div class="mx-5">
                         <div class="col-md-12">
-                            <!-- Widget: user widget style 1 -->
                             <div class="card card-widget widget-user">
-                                <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header text-white" style="background-color:#20c997;">
                                     <h3 class="widget-user-username text-right"><?php echo $row['faculty_fname'].' '.$row['faculty_mname'].' '.$row['faculty_lname']; ?></h3>
                                     <h5 class="widget-user-desc text-right"><?php echo $row['faculty_role'] ?></h5>
@@ -49,7 +43,7 @@ include('includes/navbar.php');
                                 <div class="card-footer">
                                     <div class="row">
                                         <ul class="nav col-md-12" id="custom-content-above-tab" role="tablist">
-                                            
+
                                             <li class="nav-item col-md-3">
                                                 <a class="nav-link" id="update-tab" data-toggle="pill" href="#user-update" role="tab" aria-controls="user-update" aria-selected="false">
                                                     <div class="border-right">
@@ -57,9 +51,7 @@ include('includes/navbar.php');
                                                             <h1 class="text-warning"><i class="fa fa-cog"></i></h1>
                                                             <span class="description-text text-teal">UPDATE RECORD</span>
                                                         </div>
-                                                        <!-- /.description-block -->
                                                     </div>
-                                                    <!-- /.col -->
                                                 </a>
                                             </li>
 
@@ -70,53 +62,45 @@ include('includes/navbar.php');
                                                             <h1 class="text-warning"><i class="fa fa-history"></i></h1>
                                                             <span class="description-text text-teal">ACTIVITY LOGS</span>
                                                         </div>
-                                                        <!-- /.description-block -->
                                                     </div>
-                                                    <!-- /.col -->
                                                 </a>
                                             </li>
 
                                             <li class="nav-item col-md-3">
-                                                <a class="nav-link" data-toggle="modal" data-target="<?php echo $row['faculty_role'] == 'DSA-Admin' ? '' : '#deactivateUser'; ?>" style="cursor:pointer;" >
+                                                <a class="nav-link" data-toggle="modal" data-target="<?php echo $row['faculty_role'] == 'DSA-Admin' ? '' : '#deactivateUser'; ?>" style="cursor:<?php echo $row['faculty_role'] == 'DSA-Admin' ? 'not-allowed' : 'pointer'; ?>;" >
                                                     <div class="border-right">
                                                         <div class="description-block">
                                                             <h1 class="text-danger"><i class="fa fa-user-times"></i></h1>
                                                             <span class="description-text text-teal">DEACTIVATE</span>
                                                         </div>
-                                                        <!-- /.description-block -->
                                                     </div>
-                                                    <!-- /.col -->
                                                 </a>
-
-                    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="deactivateUser" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header btn-danger">
-                            <h5 class="modal-title" id="deactivateModalLabel"><i class="fa fa-user-times"></i> Deactivate Account:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="script/deactivateUser.php" method="POST">
-                            <div class="modal-body">
-                                <h1 class="text-center"><i class="fa fa-exclamation-triangle text-danger"></i></h1>
-                                <h5 class="text-center text-danger">Are you sure you want to deactivate your account? Please enter your password to confirm.</h5>
-                                <input type="hidden" name="userID" class="form-control" value="<?php echo $row['userID'];?>" readonly required>
-                                <input type="password" name="admin_password" class="form-control" placeholder="Enter your password">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-danger" name="deactivate">Deactivate</button>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
-                    </div>
-                    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
+                                                
+                                                <div class="modal fade" id="deactivateUser" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header btn-danger">
+                                                        <h5 class="modal-title" id="deactivateModalLabel"><i class="fa fa-user-times"></i> Deactivate Account:</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="script/deactivateUser.php" method="POST">
+                                                        <div class="modal-body">
+                                                            <h1 class="text-center"><i class="fa fa-exclamation-triangle text-danger"></i></h1>
+                                                            <h5 class="text-center text-danger">Are you sure you want to deactivate your account? Please enter your password to confirm.</h5>
+                                                            <input type="hidden" name="userID" class="form-control" value="<?php echo $row['userID'];?>" readonly required>
+                                                            <input type="password" name="admin_password" class="form-control" placeholder="Enter your password">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-danger" name="deactivate">Deactivate</button>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            
                                             </li>
                                             <li class="nav-item col-md-3">
                                                 <a class="nav-link" href="manage_user.php">
@@ -316,12 +300,68 @@ include('includes/scripts.php');
 ?>
 
 <script>
-    //script for data tables
+    // //script for data tables
+    // $(function () 
+    // {
+    //     $("#activity_tbl").DataTable({
+    //     "responsive": true, "lengthChange": false, "autoWidth": false,
+    //     "buttons": ["csv", "excel", "pdf", "print"]
+    //     }).buttons().container().appendTo('#activity_tbl_wrapper .col-md-6:eq(0)');
+        
+    // });
+
     $(function () 
     {
+        var currentDate = new Date();
+        var formattedDate = currentDate.toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
         $("#activity_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["csv", "excel", "pdf", "print"]
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'User activity logs ' + formattedDate
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'User activity logs ' + formattedDate
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'User activity logs ' + formattedDate,
+                customize: function (doc) {
+                    doc.content.splice(0, 1, {
+                        text: [
+                            { text: 'User activity logs\n', fontSize: 14, bold: true,alignment: 'center'},
+                            { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
+                            { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                        ],
+                        margin: [0, 0, 0, 12]
+                    });
+                }
+            },
+            {
+                extend: 'print',
+                title: '',
+                customize: function (win) {
+                    $(win.document.body)
+                        .css('font-size', '10pt')
+                        .prepend(
+                            '<div style="text-align: center; font-size: 14pt;">User activity logs</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
+                        );
+                }
+            },
+            {
+                 extend:'colvis'
+            }
+        ],
         }).buttons().container().appendTo('#activity_tbl_wrapper .col-md-6:eq(0)');
         
     });

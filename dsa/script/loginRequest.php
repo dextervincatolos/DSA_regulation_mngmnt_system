@@ -13,13 +13,17 @@ if(isset($_POST['login']))
         {
         $row = mysqli_fetch_assoc($validateCred);
         $verify = password_verify($login_password, $row['faculty_password']);
+
+        $uid = $row['userID'];
         
         if($verify==1)
         {
             // Update loginStatus to 'online'
-            mysqli_query($connection, "UPDATE user_tbl SET user_status='online' WHERE userID=".$row['userID']);
+            mysqli_query($connection, "UPDATE user_tbl SET user_status='online' WHERE userID=".$uid);
 
-            $_SESSION['uid'] = $row['userID'];
+            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Login Initiated...','successfull') ");
+
+            $_SESSION['uid'] = $uid;
             $_SESSION['role'] = $row['faculty_role'];
             $_SESSION['username'] = $row['faculty_fname'].' '.$row['faculty_lname'];
             header("Location: ../dashboard.php");

@@ -29,7 +29,7 @@
                         <div class="modal fade" id="newPolicy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header btn-success">
                                         <h5 class="modal-title text-bold" id="exampleModalLabel"> <i class="fa fa-balance-scale"></i> Create new policy</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -124,6 +124,13 @@
                                             </div>
                                             <?php
                                         }
+                                    }else{?>
+
+                                        <div class="text-center text-danger" style="opacity: 0.5;">
+                                            <h1><i class="fa fa-balance-scale"></i></h1>
+                                            <h2>No Policy found!</h2>
+                                        </div>
+                                        <?php
                                     } ?>
                                 </div>
                             </div>

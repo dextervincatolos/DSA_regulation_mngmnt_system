@@ -7,6 +7,8 @@ if(isset($_POST['submitForm']))
 {
     $_from = $_POST['_from'];
     $_to = $_POST['_to'];
+
+    $sy = 'S.Y '.$_from.' '.$_to;
     
     $check_duplicate = mysqli_query($connection, "SELECT * FROM academic_year_tbl WHERE _from = '$_from' AND _to ='$_to' ");
 
@@ -22,6 +24,10 @@ if(isset($_POST['submitForm']))
         $query_run = mysqli_query($connection, $newAcadsyr);
 
         if($query_run) {
+
+            $uid = $_SESSION['uid'];
+            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'New School year opened ($sy)...','successful') ");
+
             $_SESSION['status'] = "New Academic Year added!";
             $_SESSION['status_code'] = "success";
             header('Location: ../manage_acadsyear.php');

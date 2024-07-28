@@ -27,6 +27,10 @@ if (isset($_POST['update'])) {
         $query_run = mysqli_query($connection, $sql);
         if ($query_run) {
 
+            $uid=$_SESSION['uid'];
+
+            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Updated department/College information ($dept_desc)...','successful') ");
+
             $_SESSION['status'] = "Department Information updated successfully!";
             $_SESSION['status_code'] = "success";
             header('Location: ../manage_college.php');

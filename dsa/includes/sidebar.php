@@ -97,7 +97,7 @@
                             <li class="nav-item">
                                 <a href="report_custom.php" class="nav-link <?php echo $active_page == 'report_custom' ? 'active' : ''; ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Custom Report</p>
+                                    <p>Violation Report</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -107,13 +107,6 @@
                                 </a>
                             </li>
                         </ul>
-                    <!-- </li>
-                    <li class="nav-item">
-                        <a href="access_level_chart.php" class="nav-link <?php echo $active_page == 'access_level_chart' ? 'active' : ''; ?>">
-                            <i class="nav-icon fas fa-sitemap"></i>
-                            <p> Access Levels Chart </p>
-                        </a>
-                    </li> -->
                 </ul>
             </nav>
 
