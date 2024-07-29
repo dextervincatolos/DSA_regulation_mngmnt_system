@@ -70,6 +70,8 @@
                                                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                                             <h5><i class="icon fas fa-exclamation-triangle"></i> This student has already violated this policy in the current semester!</h5>
                                                             <b>Given Sanctions:</b> ${sanctionsList}
+
+                                                            <h5>Note: Please make sure to assign sanction </h5>
                                                         </div>`;
                     } else {
                         violationMessage.innerHTML = '';

@@ -21,9 +21,9 @@ if(isset($_POST['submitForm']))
     
     if (mysqli_num_rows($student_Violation_exist) > 0)
     {
-        $_SESSION['status'] = "This student has already violated this policy. Please check the issued Sanction";
+        $_SESSION['status'] = "Please check the issued Sanction";
         $_SESSION['status_code'] = "warning";
-        header('Location: ../manage_student.php');
+        header('Location: ../manage_violation.php');
 
     }else{
         $insertRecord ="INSERT INTO violation_tbl (studID, spID, sanctionID, yearlvlID, acadsyrID, semID, violation_status,remarks, violation_added_by) 
@@ -31,6 +31,10 @@ if(isset($_POST['submitForm']))
         $query_run = mysqli_query($connection, $insertRecord);
 
         if($query_run) {
+
+            $uid = $_SESSION['uid'];
+            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Added new violation...','successful') ");
+            
             $_SESSION['status'] = "Violation added successfully!";
             $_SESSION['status_code'] = "success";
             header('Location: ../manage_violation.php');
@@ -41,5 +45,4 @@ if(isset($_POST['submitForm']))
             header('Location: ../manage_violation.php');
         }   
     }
-
 }

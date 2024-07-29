@@ -43,6 +43,10 @@ if(isset($_POST['submitForm']))
             $query_run = mysqli_query($connection, $insertRecord);
     
             if($query_run) {
+
+                $uid = $_SESSION['uid'];
+                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Created new student record ($student_fname $student_lname)...','successful') ");
+
                 $_SESSION['status'] = "New Student account registered!";
                 $_SESSION['status_code'] = "success";
                 header('Location: ../manage_student.php');

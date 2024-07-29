@@ -24,7 +24,7 @@ if (isset($_POST['processViolation'])) {
 
             if ($closeViolation) {
 
-                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Resolve violation $vid...','successfull') ");
+                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Violation resolved ($vid)...','successful') ");
 
                 $_SESSION['status'] = "Violation resolved!";
                 $_SESSION['status_code'] = "success";
@@ -32,7 +32,7 @@ if (isset($_POST['processViolation'])) {
                 exit();
             }else{
 
-                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Resolve violation $vid...','failed') ");
+                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Trying to resolve violation ($vid)...','failed') ");
 
                 $_SESSION['status'] = "Resolving violation failed!";
                 $_SESSION['status_code'] = "error";
