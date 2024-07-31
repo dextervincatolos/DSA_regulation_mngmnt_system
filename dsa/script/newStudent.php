@@ -38,8 +38,8 @@ if(isset($_POST['submitForm']))
     
         }else{
 
-            $insertRecord ="INSERT INTO student_tbl (student_number, student_fname, student_mname, student_lname, student_extname, student_email, student_contact, student_address, student_gender,college,courseID,added_by) 
-                            VALUES ('$student_number', '$student_fname','$student_mname','$student_lname','$student_ename', '$student_email', '$student_contact', '$student_address', '$student_gender','$student_college','$student_course','$encodedBy')";
+            $insertRecord ="INSERT INTO student_tbl (student_number, student_fname, student_mname, student_lname, student_extname, student_email, student_contact, student_address, student_gender,college,courseID,added_by,_isActive) 
+                            VALUES ('$student_number', '$student_fname','$student_mname','$student_lname','$student_ename', '$student_email', '$student_contact', '$student_address', '$student_gender','$student_college','$student_course','$encodedBy','Active')";
             $query_run = mysqli_query($connection, $insertRecord);
     
             if($query_run) {

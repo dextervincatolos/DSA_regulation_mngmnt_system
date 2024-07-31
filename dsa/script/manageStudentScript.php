@@ -17,7 +17,7 @@ document.getElementById('studentCollege').addEventListener('change', function() 
                     let option = document.createElement('option');
                     option.setAttribute('data-tokens', course.courseID);
                     option.value = course.courseID;
-                    option.text = course.course_name;
+                    option.text = course.course_desc;
                     courseSelect.add(option);
                 });
 
