@@ -89,12 +89,6 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="report_analytics.php" class="nav-link <?php echo $active_page == 'report_analytics' ? 'active' : ''; ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Analytics</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="report_custom.php" class="nav-link <?php echo $active_page == 'report_custom' ? 'active' : ''; ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Violation Report</p>

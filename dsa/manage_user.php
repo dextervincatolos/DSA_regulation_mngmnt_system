@@ -184,16 +184,6 @@
     include('includes/footer.php');
 ?>
 <script>
-    // //script for data tables
-    // $(function () 
-    // {
-    //     $("#user_tbl").DataTable({
-    //     "responsive": true, "lengthChange": false, "autoWidth": false,
-    //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    //     }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
-        
-    // });
-
     $(function () 
     {
         var currentDate = new Date();
