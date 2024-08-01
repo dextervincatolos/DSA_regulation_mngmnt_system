@@ -51,7 +51,7 @@
           <!-- /.col -->
           <div class="col-6">
             <p class="mt-1 ml-2">
-                <a href="#">I forgot my password</a>
+                <a href="forgot_password.php">I forgot my password</a>
             </p>
           </div>
           <!-- /.col -->

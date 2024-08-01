@@ -3,6 +3,11 @@ $pageTitle = 'Dashboard';
 include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');
+
+$daily_count = '<i class="fa fa-spinner"></i>';
+$weekly_count = '<i class="fa fa-spinner"></i>';
+$monthly_count = '<i class="fa fa-spinner"></i>';
+$alltime_count = '<i class="fa fa-spinner"></i>';
 ?>
 
     <!-- Main Sidebar Container -->
@@ -139,7 +144,6 @@ include('includes/navbar.php');
 
 <?php
 include('includes/scripts.php');
-include('script/getViolationCounts.php');
 include('includes/footer.php');
 ?>
 
@@ -152,18 +156,12 @@ include('includes/footer.php');
                 document.getElementById('weeklyCount').innerText = data.weekly_count;
                 document.getElementById('monthlyCount').innerText = data.monthly_count;
                 document.getElementById('alltimeCount').innerText = data.alltime_count;
-
-                // Debug information
-                console.log('Daily Query:', data.daily_count);
-                console.log('Weekly Query:', data.weekly_count);
-                console.log('Monthly Query:', data.monthly_count);
-                console.log('All-Time Query:', data.alltime_count);
             })
             .catch(error => console.error('Error fetching violation counts:', error));
     }
 
     // Fetch counts every 10 seconds
-    setInterval(fetchViolationCounts, 10000);
+    setInterval(fetchViolationCounts, 5000);
 
     // Initial fetch
     window.onload = fetchViolationCounts;
