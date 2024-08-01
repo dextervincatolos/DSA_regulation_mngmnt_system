@@ -3,37 +3,6 @@ $pageTitle = 'Dashboard';
 include('sessions.php');
 include('includes/header.php');
 include('includes/navbar.php');
-
-
-  //Get Daily violation from database.
-  $daily_violation = "SELECT DATE(created_at) AS date, COUNT(*) AS daily_count
-                      FROM violation_tbl
-                      GROUP BY DATE(created_at)
-                      ORDER BY date DESC";
-  $daily_result = $connection->query($daily_violation);
-  $daily_count = mysqli_num_rows($daily_result);
-  
-  //weekly count
-  $weekly_violation ="SELECT YEARWEEK(created_at, 1) AS week, COUNT(*) AS weekly_count
-                      FROM violation_tbl
-                      GROUP BY YEARWEEK(created_at, 1)
-                      ORDER BY week DESC"; 
-  $weekly_result = $connection->query($weekly_violation);
-  $weekly_count = mysqli_num_rows($weekly_result);
-
-  //Monthly violation
-  $monthly_violation ="SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS monthly_count
-                      FROM violation_tbl
-                      GROUP BY DATE_FORMAT(created_at, '%Y-%m')
-                      ORDER BY month DESC";
-  $monthly_result = $connection->query($monthly_violation);
-  $monthly_count = mysqli_num_rows($monthly_result);
-
-  //alltime violation
-  $alltime_violation ="SELECT * FROM violation_tbl";
-  $alltime_result = $connection->query($alltime_violation);
-  $alltime_count = mysqli_num_rows($alltime_result);
-
 ?>
 
     <!-- Main Sidebar Container -->
@@ -56,9 +25,9 @@ include('includes/navbar.php');
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <?php
-                                    echo '<h3>'.$daily_count.'</h3>';
-                                ?>
+                               
+                                   <h3 id="dailyCount"><?php echo $daily_count; ?></h3>
+                                
                                 <p>Daily</p>
                             </div>
                             <div class="icon">
@@ -71,9 +40,7 @@ include('includes/navbar.php');
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <?php
-                                    echo '<h3>'.$weekly_count.'</h3>';
-                                ?>
+                                <h3 id="weeklyCount"><?php echo $weekly_count; ?></p></h3>
                                 <p>Weekly</p>
                             </div>
                             <div class="icon">
@@ -87,9 +54,7 @@ include('includes/navbar.php');
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-teal">
                             <div class="inner">
-                                <?php
-                                    echo '<h3>'.$monthly_count.'</h3>';
-                                ?>
+                                <h3 id="monthlyCount"><?php echo $monthly_count; ?></h3>
                                 <p>Monthly</p>
                             </div>
                             <div class="icon">
@@ -103,9 +68,7 @@ include('includes/navbar.php');
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <?php
-                                    echo '<h3>'.$alltime_count.'</h3>';
-                                ?>
+                                <h3 id="alltimeCount"><?php echo $alltime_count; ?> </h3>
                                 <p>All Time</p>
                             </div>
                             <div class="icon">
@@ -176,5 +139,35 @@ include('includes/navbar.php');
 
 <?php
 include('includes/scripts.php');
+include('script/getViolationCounts.php');
 include('includes/footer.php');
 ?>
+
+<script>
+    function fetchViolationCounts() {
+        fetch('script/getViolationCounts.php')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('dailyCount').innerText = data.daily_count;
+                document.getElementById('weeklyCount').innerText = data.weekly_count;
+                document.getElementById('monthlyCount').innerText = data.monthly_count;
+                document.getElementById('alltimeCount').innerText = data.alltime_count;
+
+                // Debug information
+                console.log('Daily Query:', data.daily_count);
+                console.log('Weekly Query:', data.weekly_count);
+                console.log('Monthly Query:', data.monthly_count);
+                console.log('All-Time Query:', data.alltime_count);
+            })
+            .catch(error => console.error('Error fetching violation counts:', error));
+    }
+
+    // Fetch counts every 10 seconds
+    setInterval(fetchViolationCounts, 10000);
+
+    // Initial fetch
+    window.onload = fetchViolationCounts;
+   
+ 
+</script>
+
