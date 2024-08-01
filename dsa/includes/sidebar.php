@@ -50,8 +50,8 @@
                             <p> System Management <i class="right fas fa-angle-left"></i> </p>
                         </a>
                         <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                                <a href="manage_user.php" class="nav-link <?php echo $active_page == 'manage_user' ? 'active' : ''; ?>">
+                            <li class="nav-item  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
+                                <a href="manage_user.php" class="nav-link <?php echo $active_page == 'manage_user' ? 'active' : ''; ?> ">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User</p>
                                 </a>

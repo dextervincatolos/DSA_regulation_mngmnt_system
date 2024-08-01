@@ -24,7 +24,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                    <div class="col-lg-12 col-md-12 col-12 pb-5  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                         <a class="btn btn-success float-right" data-toggle="modal" data-target="#newYearlvl">
                             <i class="fa fa-calendar"></i>
                         </a>
@@ -63,7 +63,7 @@
                         <thead>
                             <tr>
                                 <th>Year level</th>
-                                <th>View record</th>
+                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">View record</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,7 +72,7 @@
                                 while($yearlvl = mysqli_fetch_assoc($yrlvl)) { ?>
                                     <tr>
                                         <td> <?php echo $yearlvl['year_lvl'];?> </td>
-                                        <td>
+                                        <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                                             <a class="btn btn-success form-control col-md-5" data-toggle="modal" data-target="#editYearlvl<?php echo $yearlvl['yearlvlID']; ?>"> <i class="fa fa-edit"></i> </a>
                                             <!-- Edit year level -->
                                             <div class="modal fade" id="editYearlvl<?php echo $yearlvl['yearlvlID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $yearlvl['yearlvlID']; ?>" aria-hidden="true">

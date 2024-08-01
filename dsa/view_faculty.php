@@ -25,7 +25,7 @@
                 <div class="watermark <?php echo $row['user_status'] == 'deactivated' ? 'Isdeactivated' : ''; ?>" id="watermark">
                     <h1><i class="fa fa-ban"></i></h1>
                     <h1 class="deactivation-text">This account is permanently deactivated!</h1>
-                    <a class="nav-link" href="manage_user.php">                                  
+                    <a class="nav-link">                                  
                         <h5 class="text-primary"> <span class="description-text">GO BACK</span> <i class="fa fa-share-square"></i></h1>
                     </a>
                 </div>
@@ -103,7 +103,7 @@
                                             
                                             </li>
                                             <li class="nav-item col-md-3">
-                                                <a class="nav-link" href="manage_user.php">
+                                                <a class="nav-link" href="<?php echo $_SESSION['role'] == 'DSA-User' ? 'dashboard.php' : 'manage_user.php'; ?>">
                                                     <div>
                                                         <div class="description-block">
                                                             <h1 class="text-warning"><i class="fa fa-share-square"></i></h1>

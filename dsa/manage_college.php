@@ -24,7 +24,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                    <div class="col-lg-12 col-md-12 col-12 pb-5  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                         <a class="btn btn-success float-right" data-toggle="modal" data-target="#addDept">
                             <i class="fa fa-university"></i>
                         </a>
@@ -74,7 +74,7 @@
                             <tr>
                                 <th>Department Name</th>
                                 <th>Description</th>
-                                <th>Options</th>
+                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +84,7 @@
                                     <tr>
                                         <td> <?php echo $row['dept_name'];?> </td>
                                         <td> <?php echo $row['dept_desc']; ?> </td>
-                                        <td>
+                                        <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                                             <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-danger form-control col-md-5" href="script/deleteDepartment.php?id=<?php echo$row['deptID']; ?>" onclick="return confirm('Are you sure you want to delete this department?');"> <i class="fa fa-trash"></i> </a>
                                         </td>

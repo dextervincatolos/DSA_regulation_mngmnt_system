@@ -21,7 +21,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                    <div class="col-lg-12 col-md-12 col-12 pb-5  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                         <a class="btn btn-success float-right" data-toggle="modal" data-target="#newPolicy">
                             <i class="fa fa-balance-scale"></i>
                         </a>

@@ -185,7 +185,7 @@
                                 <th>Remarks</th>
                                 <th>Added by</th>
                                 <th>Date Issued</th>
-                                <th><i class="fa fa-cog"></i></th>
+                                <th class="<?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>"><i class="fa fa-cog"></i></th>
                                 
                             </tr>
                         </thead>
@@ -207,7 +207,7 @@
                                         <td> <?php echo $violation['remarks']; ?> </td>
                                         <td> <?php echo $violation['violation_added_by']; ?> </td>
                                         <td> <?php echo date('Y-m-d', strtotime($violation['created_at'])); ?> </td>
-                                        <td>
+                                        <td class="<?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                                             <a class="btn btn-warning form-control" data-toggle="modal" data-target="#resolveViolation_<?php echo $violation['violationID']; ?>" title="Manage Violation"> Process</a>
                                                 
                                             <div class="modal fade" id="resolveViolation_<?php echo $violation['violationID']; ?>" tabindex="-1" role="dialog" aria-labelledby="deactivateModalLabel" aria-hidden="true">

@@ -40,6 +40,9 @@
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="../assets/css/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <style>
+    .hiddenTouser{
+      display: none;
+    }
 
     .content {
         position: relative;

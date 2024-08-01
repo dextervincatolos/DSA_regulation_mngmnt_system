@@ -7,7 +7,7 @@ if(isset($_POST['login']))
     $login_email = $_POST['email'];
     $login_password = $_POST['password'];
 
-    $validateCred = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_email='$login_email' ");
+    $validateCred = mysqli_query($connection, "SELECT * FROM user_tbl WHERE faculty_email='$login_email' AND user_status != 'deactivated'");
 
     if(mysqli_num_rows($validateCred) > 0)
         {
@@ -21,7 +21,7 @@ if(isset($_POST['login']))
             // Update loginStatus to 'online'
             mysqli_query($connection, "UPDATE user_tbl SET user_status='online' WHERE userID=".$uid);
 
-            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Login Initiated...','successfull') ");
+            mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Login Initiated...','successful') ");
 
             $_SESSION['uid'] = $uid;
             $_SESSION['role'] = $row['faculty_role'];

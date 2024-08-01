@@ -33,7 +33,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-lg-12 col-md-12 col-12 pb-5">
+                    <div class="col-lg-12 col-md-12 col-12 pb-5  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                         <a class="btn btn-success float-right" data-toggle="modal" data-target="#newCourse">
                             <i class="fa fa-graduation-cap"></i>
                         </a>
@@ -103,7 +103,7 @@
                                         <td> <?php echo $course['course_name'];?> </td>
                                         <td> <?php echo $course['course_desc']; ?> </td>
                                         <td> <?php echo $course['dept_desc']; ?> </td>
-                                        <td>
+                                        <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                                             <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
                                             <a class="btn btn-danger form-control col-md-5" href="script/deleteCourse.php?id=<?php echo $course['courseID']; ?>" onclick="return confirm('Are you sure you want to delete this Course?');"> <i class="fa fa-trash"></i> </a>
                                         </td>
