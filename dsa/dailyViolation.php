@@ -1,5 +1,5 @@
 <?php
-    $pageTitle = 'All-time Report';
+    $pageTitle = 'Daily Report';
     include('sessions.php');
     include('includes/header.php');
     include('includes/navbar.php');
@@ -14,7 +14,8 @@
         JOIN schoolpolicy_tbl ON violation_tbl.spID = schoolpolicy_tbl.spID 
         JOIN yearlvl_tbl ON violation_tbl.yearlvlID = yearlvl_tbl.yearlvlID 
         JOIN department_tbl ON student_tbl.college = department_tbl.deptID
-        JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID";
+        JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID
+        WHERE DATE(created_at) = '$today'";
 
     $violationlist = mysqli_query($connection, $getViolations);
 ?>
@@ -31,7 +32,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 
-                    <table id="alltimeViolation_tbl" class="table table-bordered table-hover">
+                    <table id="dailyViolation_tbl" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>S.Y</th>
@@ -91,5 +92,5 @@
 <?php
 include('includes/scripts.php');
 include('script/manageStudentScript.php');
-include('script/datatables/alltimeViolation_tbl.php');
+include('script/datatables/dailyViolation_tbl.php');
 ?>
