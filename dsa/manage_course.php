@@ -104,8 +104,7 @@
                                         <td> <?php echo $course['course_desc']; ?> </td>
                                         <td> <?php echo $course['dept_desc']; ?> </td>
                                         <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
-                                            <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
-                                            <a class="btn btn-danger form-control col-md-5" href="script/deleteCourse.php?id=<?php echo $course['courseID']; ?>" onclick="return confirm('Are you sure you want to delete this Course?');"> <i class="fa fa-trash"></i> </a>
+                                            <a class="btn btn-warning form-control" data-toggle="modal" data-target="#editCourse<?php echo $course['courseID']; ?>"> <i class="fa fa-edit"></i> </a>
                                         </td>
                                     </tr>
                                     <!-- Edit Course -->

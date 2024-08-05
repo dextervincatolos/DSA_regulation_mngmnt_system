@@ -63,7 +63,7 @@
                         <thead>
                             <tr>
                                 <th>Year level</th>
-                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">View record</th>
+                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,7 +73,7 @@
                                     <tr>
                                         <td> <?php echo $yearlvl['year_lvl'];?> </td>
                                         <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
-                                            <a class="btn btn-success form-control col-md-5" data-toggle="modal" data-target="#editYearlvl<?php echo $yearlvl['yearlvlID']; ?>"> <i class="fa fa-edit"></i> </a>
+                                            <a class="btn btn-success form-control" data-toggle="modal" data-target="#editYearlvl<?php echo $yearlvl['yearlvlID']; ?>"> <i class="fa fa-edit"></i> </a>
                                             <!-- Edit year level -->
                                             <div class="modal fade" id="editYearlvl<?php echo $yearlvl['yearlvlID']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?php echo $yearlvl['yearlvlID']; ?>" aria-hidden="true">
                                                 <div class="modal-dialog modal-md" role="document">
@@ -103,7 +103,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a class="btn btn-danger form-control col-md-5" href="script/deleteYearlvl.php?id=<?php echo $yearlvl['yearlvlID']; ?>" onclick="return confirm('Are you sure you want to delete this Year level?');"> <i class="fa fa-trash"></i> </a>
+                                            
                                         </td>
                                     </tr>
                                     <?php

@@ -5,7 +5,11 @@
     include('includes/navbar.php');
     include('includes/sidebar.php'); 
 
-    $getStudents = "SELECT student_tbl.*, course_tbl.course_name, department_tbl.dept_name FROM student_tbl JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID JOIN department_tbl ON course_tbl.deptID = department_tbl.deptID";
+    $getStudents = "SELECT student_tbl.*, course_tbl.course_name, department_tbl.dept_name 
+                    FROM student_tbl 
+                    JOIN course_tbl ON student_tbl.courseID = course_tbl.courseID 
+                    JOIN department_tbl ON course_tbl.deptID = department_tbl.deptID
+                    WHERE _isActive != 'deactivated'";
     $studentlist = mysqli_query($connection, $getStudents);
 
     $getCollege = "SELECT deptID, dept_desc FROM department_tbl";

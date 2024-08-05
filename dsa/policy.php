@@ -44,7 +44,7 @@
                                                     Policy Title
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
-                                                <input type="text" name="policy_title" id="policy_title" class="form-control" required placeholder="Policy Title">
+                                                <input type="text" name="policy_title" id="policy_title" class="form-control" required placeholder="Policy Title" required>
                                             </div>
 
                                             <div class="form-group">
@@ -100,9 +100,78 @@
                                                     <a class="d-block w-100" data-toggle="collapse" href="#policy_<?php echo $row['spID']; ?>">
                                                         <blockquote class="quote-warning">
                                                             <p class="text-bold text-success"><?php echo $row['policy_title']; ?></p> 
+                                                            <a class="btn btn-warning float-right" data-toggle="modal" data-target="#editPolicy_<?php echo $row['spID']; ?>" style="margin-top: -30px;" >
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+
+                                                          <!-- edit policy modal -->
+<div class="modal fade" id="editPolicy_<?php echo $row['spID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-bold" id="exampleModalLabel"> <i class="fa fa-balance-scale"></i> Update policy <?php echo $row['spID']; ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="script/updatePolicy.php" method="POST">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>
+                            Policy Title
+                            <span class="text-bold text-sm text-danger">*</span>
+                        </label>
+                        <input type="hidden" name="policyID" id="policyID" class="form-control" value="<?php echo $row['spID']; ?>" required readonly>
+                        <input type="text" name="policy_title" id="policy_title" class="form-control" value="<?php echo $row['policy_title']; ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Policy Description
+                            <span class="text-bold text-sm text-danger">*</span>
+                        </label>
+                        <textarea class="form-control" name="policy_description" required><?php echo $row['policy_desc']; ?></textarea>
+                    </div>
+
+                    <hr>
+                    <label> Policy Sanction(s) <span class="text-bold text-sm text-danger">*</span></label>
+                    <div id="update_sanction_<?php echo $row['spID']; ?>">
+                        <div class="form-group">
+                            <?php
+                            $getSanction = "SELECT * FROM sanction_tbl WHERE sanction_tbl.spID =" . $row['spID'];
+                            $sanction = mysqli_query($connection, $getSanction);
+
+                            if (mysqli_num_rows($sanction) > 0) {
+                                while ($sanc = mysqli_fetch_assoc($sanction)) { ?>
+                                    <input type="hidden" name="sanction_id[]" value="<?php echo $sanc['sanctionID']; ?>">
+                                    <input type="text" name="policy_sanction[<?php echo $sanc['sanctionID']; ?>]" class="form-control" value="<?php echo $sanc['sanction']; ?>" required>
+                                    <br>
+                                <?php }
+                            } ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="form-control btn btn-success btn-sm add_sanction" data-policy-id="<?php echo $row['spID']; ?>"><i class="fa fa-plus"></i> Add sanction</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="save_policy" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- edit policy modal -->
+
+
                                                             <small class="text-dark"><cite title="Description"><?php echo $row['policy_desc']; ?></cite></small>
                                                         </blockquote>
                                                     </a>
+                                                    
                                                 </h4>
                                                 <div id="policy_<?php echo $row['spID']; ?>" class="collapse" data-parent="#accordion">
                                                     <div class="card-body">
@@ -148,5 +217,7 @@
     <!-- /.content-wrapper -->
 <?php
 include('includes/scripts.php');
+include('script/addSanction.php');
+include('script/updateSanction.php');
 include('includes/footer.php');
 ?>

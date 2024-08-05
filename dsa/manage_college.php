@@ -74,7 +74,7 @@
                             <tr>
                                 <th>Department Name</th>
                                 <th>Description</th>
-                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">Options</th>
+                                <th class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,8 +85,7 @@
                                         <td> <?php echo $row['dept_name'];?> </td>
                                         <td> <?php echo $row['dept_desc']; ?> </td>
                                         <td class=" <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
-                                            <a class="btn btn-warning form-control col-md-5" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
-                                            <a class="btn btn-danger form-control col-md-5" href="script/deleteDepartment.php?id=<?php echo$row['deptID']; ?>" onclick="return confirm('Are you sure you want to delete this department?');"> <i class="fa fa-trash"></i> </a>
+                                            <a class="btn btn-warning form-control" data-toggle="modal" data-target="#editDept<?php echo $row['deptID']; ?>"> <i class="fa fa-edit"></i> </a>
                                         </td>
                                     </tr>
                                      <!-- Edit Department -->
