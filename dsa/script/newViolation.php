@@ -12,7 +12,6 @@ if(isset($_POST['submitForm']))
     $student = $_POST['student'];
     $policy = $_POST['violatedPolicy'];
     $sanction = $_POST['policySanction'];
-    $remarks = $_SESSION['remarks'];
     $added_by = $_SESSION['username'];
 
     // Check for existing violations
@@ -26,8 +25,8 @@ if(isset($_POST['submitForm']))
         header('Location: ../manage_violation.php');
 
     }else{
-        $insertRecord ="INSERT INTO violation_tbl (studID, spID, sanctionID, yearlvlID, acadsyrID, semID, violation_status,remarks, violation_added_by) 
-        VALUES ('$student', '$policy','$sanction','$yearlvl','$sy', '$sem', 'Open','$remarks', '$added_by')";
+        $insertRecord ="INSERT INTO violation_tbl (studID, spID, sanctionID, yearlvlID, acadsyrID, semID, violation_status, violation_added_by) 
+        VALUES ('$student', '$policy','$sanction','$yearlvl','$sy', '$sem', 'Open', '$added_by')";
         $query_run = mysqli_query($connection, $insertRecord);
 
         if($query_run) {

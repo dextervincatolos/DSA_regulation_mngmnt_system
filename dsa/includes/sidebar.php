@@ -94,7 +94,7 @@
                                     <p>Violation Report</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>">
                                 <a href="report_activity.php" class="nav-link <?php echo $active_page == 'report_activity' ? 'active' : ''; ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Activity logs</p>
