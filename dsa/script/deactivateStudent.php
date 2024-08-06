@@ -23,10 +23,10 @@
             
                 if($verify==1)
                 {
-                    // Update user_status to 'deactivated'
+                    
                     mysqli_query($connection, "UPDATE student_tbl SET _isActive= 'deactivated' WHERE studID=".$uid);
 
-                    mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$adminID', 'Deactivate Student account ($studentName)...','successfull') ");
+                    mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$adminID', 'Deactivate Student account ($studentName)...','successful') ");
 
                     $_SESSION['status'] = "User account deactivated successfully!";
                     $_SESSION['status_code'] = "success";

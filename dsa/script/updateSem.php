@@ -4,7 +4,6 @@ include('../sessions.php');
 
 if (isset($_POST['update'])) {
 
-    // Retrieve form data
     $semID = $_POST['sem_id'];
     $semester = $_POST['sem'];
 
@@ -19,7 +18,6 @@ if (isset($_POST['update'])) {
 
     }else{
 
-        // Perform the update operation
         $updateRecord = "UPDATE semester_tbl SET semester='$semester' WHERE semID=".$semID;
         $query_run = mysqli_query($connection, $updateRecord);
         if ($query_run) {

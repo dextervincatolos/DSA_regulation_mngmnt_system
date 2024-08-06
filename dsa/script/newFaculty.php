@@ -2,7 +2,6 @@
 
 include('../sessions.php');
 
-// register user
 if(isset($_POST['submitForm']))
 {
     $faculty_id = $_POST['facultyNum'];
@@ -48,7 +47,7 @@ if(isset($_POST['submitForm']))
         
                 if($query_run) {
 
-                    mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Register new user account...','successfull') ");
+                    mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Register new user account...','successful') ");
 
                     $_SESSION['status'] = "New user account registered!";
                     $_SESSION['status_code'] = "success";

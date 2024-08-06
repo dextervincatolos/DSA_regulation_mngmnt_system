@@ -5,7 +5,7 @@
         var violationTitles = [];
 
         function initializeChart(data) {
-            violationTitles = data.violationTitles; // Assign violation titles globally
+            violationTitles = data.violationTitles;
             var areaChartData = {
                 labels: data.violationIDs,
                 datasets: [

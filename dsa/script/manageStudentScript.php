@@ -4,7 +4,7 @@ document.getElementById('studentCollege').addEventListener('change', function() 
     let collegeID = this.value;
 
     let courseSelect = document.getElementById('studentCourse');
-    courseSelect.innerHTML = ''; // Clear options
+    courseSelect.innerHTML = ''; 
 
     if (collegeID) {
         

@@ -18,7 +18,6 @@ if(isset($_POST['login']))
         
         if($verify==1)
         {
-            // Update loginStatus to 'online'
             mysqli_query($connection, "UPDATE user_tbl SET user_status='online' WHERE userID=".$uid);
 
             mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Login Initiated...','successful') ");

@@ -272,98 +272,12 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
                 <?php }?>
-
-                    
-                        
-                    </section>
-                <!-- /.content -->
-            </div>
+  
+        </section>
+        <!-- /.content -->
+    </div>
             
-
-
-
-
 <?php
 include('includes/scripts.php');
 ?>
-
-<script>
-    // //script for data tables
-    // $(function () 
-    // {
-    //     $("#activity_tbl").DataTable({
-    //     "responsive": true, "lengthChange": false, "autoWidth": false,
-    //     "buttons": ["csv", "excel", "pdf", "print"]
-    //     }).buttons().container().appendTo('#activity_tbl_wrapper .col-md-6:eq(0)');
-        
-    // });
-
-    $(function () 
-    {
-        var currentDate = new Date();
-        var formattedDate = currentDate.toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        $("#activity_tbl").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'excelHtml5',
-                title: 'User activity logs ' + formattedDate
-            },
-            {
-                extend: 'csvHtml5',
-                title: 'User activity logs ' + formattedDate
-            },
-            {
-                extend: 'pdfHtml5',
-                title: 'User activity logs ' + formattedDate,
-                customize: function (doc) {
-                    doc.content.splice(0, 1, {
-                        text: [
-                            { text: 'User activity logs\n', fontSize: 14, bold: true,alignment: 'center'},
-                            { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
-                            { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
-                        ],
-                        margin: [0, 0, 0, 12]
-                    });
-                }
-            },
-            {
-                extend: 'print',
-                title: '',
-                customize: function (win) {
-                    $(win.document.body)
-                        .css('font-size', '10pt')
-                        .prepend(
-                            '<div style="text-align: center; font-size: 14pt;">User activity logs</div>' +
-                            '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
-                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
-                        );
-                }
-            },
-            {
-                 extend:'colvis'
-            }
-        ],
-        }).buttons().container().appendTo('#activity_tbl_wrapper .col-md-6:eq(0)');
-        
-    });
-
-</script>

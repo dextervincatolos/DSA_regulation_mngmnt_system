@@ -13,13 +13,11 @@ if (isset($_POST['update'])) {
     $fieldsToUpdate = [];
     $values = [];
 
-    // Helper function to add fields to update
     function addField($fieldName, $newValue) {
         global $fieldsToUpdate, $values;
         $fieldsToUpdate[] = "$fieldName = '$newValue'";
     }
 
-    // Check each field for changes
     if (trim($_POST['facultyfName']) != $currentData['faculty_fname']) {
         addField('faculty_fname', trim($_POST['facultyfName']));
     }
@@ -64,7 +62,6 @@ if (isset($_POST['update'])) {
         addField('faculty_address', trim($_POST['facultyAddress']));
     }
 
-    // Check passwords only if the new password is provided
     if (!empty($_POST['facultyNewpassword'])) {
        
         if (password_verify($_POST['facultyOldpassword'], $currentData['faculty_password'])) {
@@ -86,7 +83,6 @@ if (isset($_POST['update'])) {
         }
     }
 
-    // If there are fields to update, construct and execute the query
     if (!empty($fieldsToUpdate)) {
         $sql = "UPDATE user_tbl SET " . implode(", ", $fieldsToUpdate) . " WHERE userID = '$userID'";
         $query_run = mysqli_query($connection, $sql);

@@ -1,10 +1,10 @@
 <?php
 include('../sessions.php');
 
- // Check if the `id` parameter is set in the URL
+
  if (isset($_GET['id'])) {
 
-     // Get the department ID from the URL
+  
      $deptID = intval($_GET['id']);
 
     $fetchQ = mysqli_query($connection,"SELECT dept_desc FROM department_tbl WHERE deptID =". $deptID);

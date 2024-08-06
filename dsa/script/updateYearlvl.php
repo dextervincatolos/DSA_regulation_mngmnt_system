@@ -4,7 +4,6 @@ include('../sessions.php');
 
 if (isset($_POST['update'])) {
 
-    // Retrieve form data
     $yearlvlID = $_POST['yearlvl_id'];
     $yearlvl = $_POST['yearlvl'];
 
@@ -28,8 +27,6 @@ if (isset($_POST['update'])) {
             header('Location: ../manage_yearlvl.php');
 
         }else{
-
-            // Perform the update operation
             $updateRecord = "UPDATE yearlvl_tbl SET year_lvl='$yearlvl' WHERE yearlvlID=".$yearlvlID;
             $query_run = mysqli_query($connection, $updateRecord);
 

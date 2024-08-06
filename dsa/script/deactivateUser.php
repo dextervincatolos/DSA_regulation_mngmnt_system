@@ -26,7 +26,7 @@ if (isset($_POST['deactivate'])) {
                 // Update user_status to 'deactivated'
                 mysqli_query($connection, "UPDATE user_tbl SET user_status= 'deactivated' WHERE userID=".$uid);
 
-                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$adminID', 'Deactivate user account ($user)...','successfull') ");
+                mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$adminID', 'Deactivate user account ($user)...','successful') ");
 
                 $_SESSION['status'] = "User account deactivated successfully!";
                 $_SESSION['status_code'] = "success";

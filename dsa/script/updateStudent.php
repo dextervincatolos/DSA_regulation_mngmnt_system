@@ -17,9 +17,7 @@ if (isset($_POST['update'])) {
         global $fieldsToUpdate, $values;
         $fieldsToUpdate[] = "$fieldName = '$newValue'";
     }
-    // studentCollege
-    // studentCourse
-    // Check each field for changes
+
     if (trim($_POST['studFName']) != $currentData['student_fname']) {
         addField('student_fname', trim($_POST['studFName']));
     }
@@ -70,7 +68,6 @@ if (isset($_POST['update'])) {
         addField('student_address', trim($_POST['stuDAddress']));
     }
 
-    // If there are fields to update, construct and execute the query
     if (!empty($fieldsToUpdate)) {
         $sql = "UPDATE student_tbl SET " . implode(", ", $fieldsToUpdate) . " WHERE studID = '$studID'";
         $query_run = mysqli_query($connection, $sql);

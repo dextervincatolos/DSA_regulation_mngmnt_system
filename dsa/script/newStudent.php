@@ -2,7 +2,6 @@
 
 include('../sessions.php');
 
-// Register Student
 if(isset($_POST['submitForm']))
 {
     $student_number = $_POST['studentNum'];

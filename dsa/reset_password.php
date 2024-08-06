@@ -25,7 +25,7 @@
       <form action="script/resetPassword.php" method="POST">
         <div class="input-group mb-3">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
-            <input type="password" class="form-control" id="password" name="password" placeholder="New Password" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="New Password" required pattern="(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{8,}" title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number">
           <div class="input-group-append">
             <div class="input-group-text">
                 <i class="fa fa-unlock-alt"></i>

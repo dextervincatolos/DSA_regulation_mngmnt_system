@@ -4,7 +4,6 @@ include('../sessions.php');
 
 if (isset($_POST['update'])) {
 
-    // Retrieve form data
     $courseID = $_POST['course_id'];
     $course_name = $_POST['course_name'];
     $course_desc = $_POST['course_desc'];
@@ -12,7 +11,6 @@ if (isset($_POST['update'])) {
 
 
     $checkRecord = mysqli_query($connection, "SELECT * FROM course_tbl WHERE course_name = '$course_name' AND courseID !='$courseID' || course_desc = '$course_desc' AND courseID !='$courseID'");
-    // $_isExisting = mysqli_fetch_assoc($checkRecord);
 
     if (mysqli_num_rows($checkRecord) > 0){
 
@@ -33,7 +31,6 @@ if (isset($_POST['update'])) {
     
         }else{
     
-            // Perform the update operation
             $updateRecord = "UPDATE course_tbl SET course_name='$course_name', course_desc='$course_desc', deptID='$dept_name' WHERE courseID=".$courseID;
             $query_run = mysqli_query($connection, $updateRecord);
             if ($query_run) {

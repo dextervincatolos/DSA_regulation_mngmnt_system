@@ -29,14 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         $userId = $user['userID'];
 
-        // Update the user's password
         $updatePasswordQuery = "UPDATE user_tbl SET faculty_password = ? WHERE userID = ?";
         $stmt = $connection->prepare($updatePasswordQuery);
 
         $stmt->bind_param('si', $newPassword, $userId);
         $stmt->execute();
 
-        // Delete the token
         $deleteTokenQuery = "DELETE FROM password_resets WHERE token = ?";
         $stmt = $connection->prepare($deleteTokenQuery);
 

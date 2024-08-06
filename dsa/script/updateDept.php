@@ -3,7 +3,7 @@
 include('../sessions.php');
 
 if (isset($_POST['update'])) {
-    // Retrieve form data
+
     $deptID = $_POST['dept_id'];
     $dept_name = $_POST['dept_name'];
     $dept_desc = $_POST['dept_desc'];
@@ -12,8 +12,6 @@ if (isset($_POST['update'])) {
     $checkRecord = mysqli_query($connection, "SELECT * FROM department_tbl WHERE deptID='$deptID' ");
     $row = mysqli_fetch_assoc($checkRecord);
 
-    // if(mysqli_num_rows($_isChanged) > 0)
-    //     {
     if ($row['dept_name'] == $dept_name AND $row['dept_desc'] == $dept_desc) {
     
         $_SESSION['status'] = "No changes have made.";
@@ -22,7 +20,6 @@ if (isset($_POST['update'])) {
 
     }else{
 
-        // Perform the update operation
         $sql = "UPDATE department_tbl SET dept_name='$dept_name', dept_desc='$dept_desc' WHERE deptID=$deptID";
         $query_run = mysqli_query($connection, $sql);
         if ($query_run) {

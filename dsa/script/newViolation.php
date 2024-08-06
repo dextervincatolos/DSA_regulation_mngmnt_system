@@ -2,7 +2,6 @@
 
 include('../sessions.php');
 
-// Register Student
 if(isset($_POST['submitForm']))
 {
 
@@ -14,7 +13,7 @@ if(isset($_POST['submitForm']))
     $sanction = $_POST['policySanction'];
     $added_by = $_SESSION['username'];
 
-    // Check for existing violations
+
     $student_Violation_exist= mysqli_query($connection, "SELECT * FROM violation_tbl WHERE spID = $policy AND sanctionID = $sanction AND studID = $student AND semID = $sem AND acadsyrID = $sy AND violation_status = 'Open'");
     
     

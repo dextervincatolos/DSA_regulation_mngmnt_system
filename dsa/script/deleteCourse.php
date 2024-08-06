@@ -1,10 +1,9 @@
 <?php
 include('../sessions.php');
 
-// Check if the `id` parameter is set in the URL
 if (isset($_GET['id'])) {
 
-    // Get the Course ID from the URL
+   
     $courseID = intval($_GET['id']);
 
     $fetchQ = mysqli_query($connection,"SELECT course_desc FROM course_tbl WHERE courseID =". $courseID);
@@ -12,7 +11,7 @@ if (isset($_GET['id'])) {
 
     $course_desc = $row['course_desc'];
 
-    // Prepare and execute the deletion query
+   
     $query = "DELETE FROM course_tbl WHERE courseID = $courseID";
     $query_run = mysqli_query($connection, $query);
    

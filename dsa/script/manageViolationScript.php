@@ -1,18 +1,13 @@
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Initially disable the violatedPolicy select element
         document.getElementById('violatedPolicy').disabled = true;
-
-        // Add event listener to the semester select element
         document.getElementById('semester').addEventListener('change', function() {
             let violatedPolicySelect = document.getElementById('violatedPolicy');
             if (this.value) {
-                // Enable the violatedPolicy select element if a semester is selected
                 violatedPolicySelect.disabled = false;
                 $('#violatedPolicy').selectpicker('refresh');
             } else {
-                // Disable the violatedPolicy select element if no semester is selected
                 violatedPolicySelect.disabled = true;
                 $('#violatedPolicy').selectpicker('refresh');
             }
@@ -25,10 +20,9 @@
         let sy = document.getElementById('sy').value;
 
         let sanctionSelect = document.getElementById('policySanction');
-        sanctionSelect.innerHTML = ''; // Clear options
+        sanctionSelect.innerHTML = '';
 
         if (policyID && studentID && semID && sy) {
-            // Fetch sanctions
             fetch(`script/fetchSanction.php?policyID=${policyID}&studentID=${studentID}&semesterID=${semID}`)
                 .then(response => {
                     if (!response.ok) {
@@ -48,7 +42,6 @@
                 })
                 .catch(error => console.error('Error fetching sanctions:', error));
 
-            // Check for existing violations
             fetch(`script/checkViolation.php?policyID=${policyID}&studentID=${studentID}&semesterID=${semID}&sy=${sy}`)
                 .then(response => {
                     if (!response.ok) {

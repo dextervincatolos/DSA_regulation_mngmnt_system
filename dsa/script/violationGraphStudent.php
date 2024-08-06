@@ -1,6 +1,5 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Ensure the canvas element is loaded before accessing it
         var studentViolationChartCanvas = document.getElementById('studentViolationChart');
         if (studentViolationChartCanvas) {
             var studentViolationChartContext = studentViolationChartCanvas.getContext('2d');
@@ -37,7 +36,7 @@
             return;
         }
 
-        violationTitles = data.violationTitles; // Assign violation titles globally
+        violationTitles = data.violationTitles;
         var areaChartData = {
             labels: data.violationIDs,
             datasets: [
@@ -87,7 +86,7 @@
                         },
                         scaleLabel: {
                             display: false,
-                            labelString: 'Policy IDs' // Title for the x-axis
+                            labelString: 'Policy IDs'
                         }
                     }
                 ],
@@ -135,7 +134,7 @@
         }
 
         if (!data.violationIDs.length) {
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clear the canvas
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); 
             drawNoDataMessage(ctx, 'No Violations Found');
             return;
         }

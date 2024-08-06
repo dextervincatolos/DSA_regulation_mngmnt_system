@@ -2,7 +2,6 @@
 
 include('../sessions.php');
 
-// register user
 if(isset($_POST['submitForm']))
 {
     $year_level = $_POST['yearlvl'];

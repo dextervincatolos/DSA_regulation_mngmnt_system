@@ -2,7 +2,6 @@
 
 include('../sessions.php');
 
-// register user
 if(isset($_POST['submitForm']))
 {
     $_from = $_POST['_from'];

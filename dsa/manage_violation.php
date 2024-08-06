@@ -17,7 +17,7 @@
 
     $violationlist = mysqli_query($connection, $getViolations);
     //Get Students
-    $getstudents = "SELECT * FROM student_tbl";
+    $getstudents = "SELECT * FROM student_tbl WHERE _isActive = 'Active'";
     $studentList = $connection->query($getstudents);
     $students = [];
     if ($studentList->num_rows > 0) {
