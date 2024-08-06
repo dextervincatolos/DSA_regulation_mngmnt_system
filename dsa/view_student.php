@@ -240,5 +240,4 @@
 <?php
 include('includes/scripts.php');
 include('script/manageStudentScript.php');
-include('script/violationGraphStudent.php');
 ?>
