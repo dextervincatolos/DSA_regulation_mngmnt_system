@@ -38,7 +38,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                             <div class="icon">
                                 <i class="fa fa-hourglass-start"></i>
                             </div>
-                            <a href="violation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="dailyViolation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                      <!-- settled Violations -->
@@ -51,7 +51,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                             <div class="icon">
                                 <i class="fa fa-hourglass-half"></i>
                             </div>
-                            <a href="violation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="weeklyViolation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./settled violations -->
@@ -65,7 +65,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                             <div class="icon">
                                 <i class="fa fa-hourglass-end"></i>
                             </div>
-                            <a href="violation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="monthlyViolation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./unsettled Violation -->
@@ -79,7 +79,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                             <div class="icon">
                             <i class="fa fa-hourglass"></i>
                             </div>
-                            <a href="violation.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="report_custom.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./unsettled Violation -->
@@ -89,7 +89,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
 
                 <div class="row">
                     <!-- health chart -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card card-green card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Total Number of Violation Reported</h3>
@@ -111,7 +111,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                     </div>
 
                     <!-- educ chart -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card card-green card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Distribution of Violation by Department</h3>
@@ -124,7 +124,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                         </div>
                         <div class="card-body">
                             <div class="chart">
-                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            <canvas id="groupedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -145,6 +145,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
 <?php
 include('includes/scripts.php');
 include('includes/footer.php');
+include('script/violationGraph.php');
 ?>
 
 <script>
@@ -165,7 +166,5 @@ include('includes/footer.php');
 
     // Initial fetch
     window.onload = fetchViolationCounts;
-   
- 
 </script>
 

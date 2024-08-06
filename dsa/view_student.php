@@ -148,7 +148,34 @@
                         <div class="card-body">
                             <div class="tab-content">
                             <div class="tab-pane active" id="activity">
-                                Activity
+                               
+                                
+                                    <div class="row">
+                                        <!-- health chart -->
+                                        <div class="col-md-12">
+                                            <div class="card card-green card-outline">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Violation Report</h3>
+
+                                                <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart">
+                                                <canvas id="studentViolationChart"  style="min-height: 400px; height: 400px; max-height: 400px; max-width: 100%;"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- /.card-body -->
+                                            </div>
+                                            <!-- /.card -->
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <div id="studentid" data-student-id="<?php echo isset($row['studID']) ? htmlspecialchars($row['studID']) : ''; ?>"></div>
+
 
                             </div>
 
@@ -345,6 +372,7 @@
 <?php
 include('includes/scripts.php');
 include('script/manageStudentScript.php');
+include('script/studentViolationGraph.php');
 ?>
 
 <script>
