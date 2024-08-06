@@ -25,7 +25,7 @@
                 <div class="watermark <?php echo $row['user_status'] == 'deactivated' ? 'Isdeactivated' : ''; ?>" id="watermark">
                     <h1><i class="fa fa-ban"></i></h1>
                     <h1 class="deactivation-text">This account is permanently deactivated!</h1>
-                    <a class="nav-link">                                  
+                    <a class="nav-link" href="manage_user.php">                                  
                         <h5 class="text-primary"> <span class="description-text">GO BACK</span> <i class="fa fa-share-square"></i></h1>
                     </a>
                 </div>
