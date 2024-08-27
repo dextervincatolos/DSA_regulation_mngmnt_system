@@ -211,7 +211,7 @@
                                                         New Password: 
                                                         <span class="text-bold text-sm text-danger">* </span>
                                                     </label>
-                                                    <input type="password" name="facultyNewpassword" id="facultyNewpassword" class="form-control" pattern="(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d]{8,}" <?php echo $row['userID'] != $_SESSION['uid'] ? 'disabled' : ''; ?> title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, and one number">
+                                                    <input type="password" class="form-control" name="facultyNewpassword" id="facultyNewpassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$" <?php echo $row['userID'] != $_SESSION['uid'] ? 'disabled' : ''; ?> title="Must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label> 
