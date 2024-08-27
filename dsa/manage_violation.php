@@ -4,7 +4,7 @@
     include('includes/header.php');
     include('includes/navbar.php');
 
-    $getViolations = "SELECT violation_tbl.*, student_tbl.*,academic_year_tbl.*,semester_tbl.*,sanction_tbl.*,schoolpolicy_tbl.policy_title,yearlvl_tbl.year_lvl,department_tbl.dept_name,course_tbl.course_name FROM violation_tbl 
+    $getViolations = "SELECT violation_tbl.*, student_tbl.*,academic_year_tbl.*,semester_tbl.*,sanction_tbl.*,schoolpolicy_tbl.policy_code,yearlvl_tbl.year_lvl,department_tbl.dept_name,course_tbl.course_name FROM violation_tbl 
         JOIN student_tbl ON violation_tbl.studID = student_tbl.studID 
         JOIN academic_year_tbl ON violation_tbl.acadsyrID = academic_year_tbl.acadsyrID 
         JOIN semester_tbl ON violation_tbl.semID = semester_tbl.semID 
@@ -195,7 +195,7 @@
                                         <td> <?php echo $violation['semester'];?> </td>
                                         <td> <?php echo $violation['student_fname'].', '.$violation['student_mname'].', '.$violation['student_lname'].' '.$violation['student_extname']; ?> </td>
                                         <td> <?php echo $violation['year_lvl']; ?> </td>
-                                        <td> <?php echo $violation['policy_title'];?> </td>
+                                        <td> <?php echo $violation['policy_code'];?> </td>
                                         <td> <?php echo $violation['sanction'];?> </td>
                                         <td> <?php echo $violation['dept_name']; ?> </td>
                                         <td> <?php echo $violation['course_name']; ?> </td>

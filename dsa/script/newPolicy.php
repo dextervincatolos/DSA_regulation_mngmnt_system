@@ -4,11 +4,12 @@ include('../sessions.php');
 
     if(isset($_POST['save_policy'])) {
 
+        $policy_code = $_POST['policy_code'];
         $policy_title = $_POST['policy_title'];
         $policy_description = $_POST['policy_description'];
         $uid = $_SESSION['uid'];
 
-        $insert_new_policy = mysqli_query($connection, "INSERT INTO schoolpolicy_tbl (policy_title, policy_desc)  VALUES ('$policy_title', '$policy_description') ");
+        $insert_new_policy = mysqli_query($connection, "INSERT INTO schoolpolicy_tbl (policy_code,policy_title, policy_desc)  VALUES ('$policy_code', '$policy_title', '$policy_description') ");
         $policyID = mysqli_insert_id($connection);
 
         if($policyID != '' ) {

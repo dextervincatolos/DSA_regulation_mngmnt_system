@@ -41,6 +41,14 @@
 
                                             <div class="form-group" >
                                                 <label> 
+                                                    Policy Code:
+                                                    <span class="text-bold text-sm text-danger">*</span> 
+                                                </label>
+                                                <input type="text" name="policy_code" id="policy_code" class="form-control" required placeholder="Policy Code" required>
+                                            </div>
+
+                                            <div class="form-group" >
+                                                <label> 
                                                     Policy Title
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
@@ -99,7 +107,7 @@
                                                 <h4 class="card-title w-100">
                                                     <a class="d-block w-100" data-toggle="collapse" href="#policy_<?php echo $row['spID']; ?>">
                                                         <blockquote class="quote-warning">
-                                                            <p class="text-bold text-success"><?php echo $row['policy_title']; ?></p> 
+                                                            <p class="text-bold text-success"><?php echo $row['policy_code'].' : '.$row['policy_title']; ?></p> 
                                                             <a class="btn btn-warning float-right  <?php echo $_SESSION['role'] == 'DSA-User' ? 'hiddenTouser' : ''; ?>"  data-toggle="modal" data-target="#editPolicy_<?php echo $row['spID']; ?>" style="margin-top: -30px;"  >
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
@@ -109,7 +117,7 @@
                                                                 <div class="modal-dialog modal-lg" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title text-bold" id="exampleModalLabel"> <i class="fa fa-balance-scale"></i> Update policy <?php echo $row['spID']; ?></h5>
+                                                                            <h5 class="modal-title text-bold" id="exampleModalLabel"> <i class="fa fa-balance-scale"></i> Update policy</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>

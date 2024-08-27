@@ -70,13 +70,13 @@ if (isset($_POST['update'])) {
                 addField('faculty_password', $newPasswordHash);
             } else {
                 $_SESSION['status'] = "New password and confirmation do not match!";
-                $_SESSION['status_code'] = "info";
+                $_SESSION['status_code'] = "warning";
                 header("Location: ../view_faculty.php?id=$userID");
                 exit();
             }
         } else {
             $_SESSION['status'] = "Old password is incorrect!";
-            $_SESSION['status_code'] = "info";
+            $_SESSION['status_code'] = "warning";
             header("Location: ../view_faculty.php?id=$userID");
             exit();
             

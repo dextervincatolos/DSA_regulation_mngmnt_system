@@ -54,7 +54,7 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            <img class="profile-user-img img-fluid img-circle" src="../assets/img/avatar/avatar2.png" alt="User profile picture">
+                                            <img class="profile-user-img img-fluid img-circle" src="../assets/img/avatar/profile.svg" alt="User profile picture">
                                         </div>
                                         <h3 class="profile-username text-center"><?php echo $row['student_fname'].' '.$row['student_lname']; ?></h3>
                                         <p class="text-center text-success"><?php echo $row['student_number']; ?></p>
@@ -240,5 +240,5 @@
 <?php
 include('includes/scripts.php');
 include('script/manageStudentScript.php');
-include('script/violationGraphStudent.php');
+
 ?>

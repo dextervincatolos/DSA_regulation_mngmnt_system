@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="<?php echo $active_page != 'view_faculty' or $active_page != 'view_student' ? 'main-header' : ''; ?>  navbar navbar-expand navbar-green navbar-dark">
+<nav class="<?php echo $active_page == 'view_faculty' || $active_page == 'view_student' || $active_page == 'dailyViolation' || $active_page == 'weeklyViolation' || $active_page == 'monthlyViolation'|| $active_page == 'report_custom' ? '' : 'main-header'; ?>  navbar navbar-expand navbar-green navbar-dark">
 <!-- Left navbar links -->
 <ul class="navbar-nav">
     <li class="nav-item">
