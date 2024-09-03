@@ -145,6 +145,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
 <?php
 include('includes/scripts.php');
 include('includes/footer.php');
+include('script/violationGraph.php');
 ?>
 
 <script>
