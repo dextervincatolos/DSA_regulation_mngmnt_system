@@ -3,11 +3,8 @@
 
     $(function () {
         var currentDate = new Date();
-        var formattedDate = currentDate.toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
         
         $("#yearlvl_tbl").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -15,15 +12,24 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    title: 'DSA Year level list ' + formattedDate
+                    title: 'DSA Year level list ' + formattedDate,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                 },
                 {
                     extend: 'csvHtml5',
-                    title: 'DSA Year level list ' + formattedDate
+                    title: 'DSA Year level list ' + formattedDate,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                 },
                 {
                     extend: 'pdfHtml5',
                     title: 'DSA Year level list ' + formattedDate,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                     customize: function (doc) {
                         doc.content.splice(0, 1, {
                             text: [
@@ -33,6 +39,8 @@
                             ],
                             margin: [0, 0, 0, 12]
                         });
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*'); // Equal column widths
+                        doc.content[1].alignment = 'center'; // Center the table
                     }
                 },
                 {

@@ -3,11 +3,8 @@
 
     $(function () {
         var currentDate = new Date();
-        var formattedDate = currentDate.toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
         
         $("#acads_tbl").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -33,6 +30,9 @@
                             ],
                             margin: [0, 0, 0, 12]
                         });
+                        // Center the table horizontally
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*'); // Equal column widths
+                        doc.content[1].alignment = 'center'; // Center the table
                     }
                 },
                 {

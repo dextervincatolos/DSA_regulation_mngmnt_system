@@ -39,12 +39,26 @@
                                     <form action="script/newPolicy.php" method="POST">
                                         <div class="modal-body">
 
-                                            <div class="form-group" >
-                                                <label> 
-                                                    Policy Code:
-                                                    <span class="text-bold text-sm text-danger">*</span> 
-                                                </label>
-                                                <input type="text" name="policy_code" id="policy_code" class="form-control" required placeholder="Policy Code" required>
+                                            <div class="row">
+                                                <div class="form-group col-md-6" >
+                                                    <label> 
+                                                        Policy Code:
+                                                        <span class="text-bold text-sm text-danger">*</span> 
+                                                    </label>
+                                                    <input type="text" name="policy_code" id="policy_code" class="form-control" required placeholder="Policy Code" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> 
+                                                        Minor/Major Policy:
+                                                        <span class="text-bold text-sm text-danger">*</span> 
+                                                    </label>
+                                                    <select class="form-control selectpicker" name="policyType" id="policyType" data-live-search = "true" data-size="5" title="Select Policy Type..." data-width="100%" required>
+                                                        
+                                                        <option data-tokens="0" value="0">MINOR</option>
+                                                        <option data-tokens="1" value="1">MAJOR</option>
+                                                        
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             <div class="form-group" >

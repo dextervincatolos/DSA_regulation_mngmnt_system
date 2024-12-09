@@ -71,6 +71,36 @@
 .watermark.Isdeactivated{
   display: block;
 }
+
+
+/* Offense notification form */
+.formHead {
+  font-style: italic; /* Makes the text italic */
+  font-weight: bold;  /* Makes the text bold */
+}
+.formSchoolname {
+  font-family: "Old English Text MT", "Blackletter", serif; /* Specify Old English font */
+  font-weight: bold; /* Make the text bold */
+  text-align: center; /* Optional: center the text */
+  margin-top: -15px;
+
+}
+.formVision{
+  font-family: "Brush Script MT", "Blackletter", serif; /* Specify Old English font */ 
+  font-weight: bold; /* Make the text bold */
+  text-align: center; /* Optional: center the text */
+  margin-top: -15px;
+  margin-bottom: 30px;
+}
+.schoolLogo{
+  text-align: right;
+}
+.schoolsysLogo{
+  text-align: left;
+}
+.signatories{
+  text-align: center;
+}
     
   </style>
 
@@ -82,6 +112,9 @@
   $student_mngmnt_pages = ['manage_student', 'manage_violation'];
   $sys_mngmnt_pages = ['manage_user', 'manage_college', 'manage_course', 'manage_yearlvl', 'manage_acadsyear'];
   $report_pages = ['report_custom', 'report_activity'];
+
+
+  $notificaion = '<i class="fa fa-spinner"></i>';
 
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">

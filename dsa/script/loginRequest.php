@@ -25,7 +25,13 @@ if(isset($_POST['login']))
             $_SESSION['uid'] = $uid;
             $_SESSION['role'] = $row['faculty_role'];
             $_SESSION['username'] = $row['faculty_fname'].' '.$row['faculty_lname'];
-            header("Location: ../dashboard.php");
+            $_SESSION['department'] = $row['faculty_department'];
+            if ($row['faculty_role'] == 'College-Dean') {
+                header("Location: ../../College-Dean/dashboard.php");
+            }else {
+                header("Location: ../dashboard.php");
+            }
+            
         
         }
         else 

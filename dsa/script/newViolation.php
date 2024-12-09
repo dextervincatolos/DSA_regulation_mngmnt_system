@@ -30,6 +30,26 @@ if(isset($_POST['submitForm']))
 
         if($query_run) {
 
+            $violationID = mysqli_insert_id($connection);
+
+            // Fetch violator's department ID
+            $violatorDeptQuery = mysqli_query($connection, "SELECT college FROM student_tbl WHERE studID = '$student'");
+            $violatorDept = mysqli_fetch_assoc($violatorDeptQuery)['college'];
+
+            // Fetch all admin users and users in the same department
+            $usersQuery = mysqli_query($connection, " SELECT userID, faculty_department FROM user_tbl WHERE faculty_department = '$violatorDept' OR faculty_role IN ('DSA-Admin', 'DSA-User')");
+
+
+            while ($user = mysqli_fetch_assoc($usersQuery)) {
+                $userID = $user['userID'];
+                $deptID = $user['faculty_department'];
+
+                // Insert notifications for each user
+                $notificationQuery = "INSERT INTO notification_tbl (userID, violationID, deptID, notif_Content, notif_Status) 
+                    VALUES ('$userID', '$violationID', '$deptID', 'A new violation has been committed.',0)";
+                mysqli_query($connection, $notificationQuery);
+            }
+
             $uid = $_SESSION['uid'];
             mysqli_query($connection, "INSERT INTO activity_logs_tbl (userID, _activity,_status)  VALUES ('$uid', 'Added new violation...','successful') ");
             

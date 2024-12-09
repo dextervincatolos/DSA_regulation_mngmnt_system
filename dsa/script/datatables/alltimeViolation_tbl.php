@@ -14,29 +14,46 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    title: 'All-time Violation Report ' + formattedDate
+                    title: 'All-time Violation Report ' + formattedDate,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                 },
                 {
                     extend: 'csvHtml5',
-                    title: 'All-time Violation Report ' + formattedDate
+                    title: 'All-time Violation Report ' + formattedDate,
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                 },
                 {
                     extend: 'pdfHtml5',
                     title: 'All-time Violation Report ' + formattedDate,
+                    pageSize: 'A4',
+                    orientation: 'landscape',
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                     customize: function (doc) {
+                        // Add custom header
                         doc.content.splice(0, 1, {
                             text: [
-                                { text: 'All-time Violation Report\n', fontSize: 14, bold: true,alignment: 'center'},
-                                { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
-                                { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                                { text: 'All-time Violation Report\n', fontSize: 12, bold: true, alignment: 'center' },
+                                { text: 'System Generated Report\n\n', fontSize: 11, alignment: 'center' },
+                                { text: 'Generated Date: ' + formattedDate, fontSize: 9, alignment: 'center' }
                             ],
                             margin: [0, 0, 0, 12]
                         });
+                        doc.content[1].table.widths = Array(doc.content[1].table.body[0].length).fill('*'); // Equal column widths
+                        doc.content[1].alignment = 'center'; // Center the table
                     }
                 },
                 {
                     extend: 'print',
                     title: '',
+                    exportOptions: {
+                        columns: ':not(:last-child)' // Exclude the last column
+                    },
                     customize: function (win) {
                         $(win.document.body)
                             .css('font-size', '10pt')

@@ -7,6 +7,17 @@
 
     $faculty = "SELECT * FROM user_tbl";
     $res = mysqli_query($connection, $faculty);
+    $username = $_SESSION['username'];
+
+    $getCollege = "SELECT deptID, dept_desc FROM department_tbl";
+    $department = $connection->query($getCollege);
+
+    $colleges = [];
+    if ($department->num_rows > 0) {
+        while($row = $department->fetch_assoc()) {
+            $colleges[] = $row;
+        }
+    }
 
 ?>
 
@@ -38,13 +49,40 @@
                                     </div>
                                     <form action="script/newFaculty.php" method="POST">
                                         <div class="modal-body">
-                                            <div class="form-group col-md-4">
+                                            <div class="row">
+
+                                                <div class="form-group col-md-6">
+                                                    <label> 
+                                                        Faculty ID
+                                                        <span class="text-bold text-sm text-danger">*</span> 
+                                                    </label>
+                                                    <input type="text" name="facultyNum" id="facultyNum" class="form-control" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label> 
+                                                        Select Role:
+                                                        <span class="text-bold text-sm text-danger">*</span> 
+                                                    </label>
+                                                    <select class="form-control selectpicker" required name="role" id="role" data-live-search = "true" data-size="5" title="Select Role" data-width="100%" required>
+                                                        <option value="DSA-User">DSA-User</option>
+                                                        <option value="College-Dean">College-Dean</option>
+                                                    </select>
+                                                    <!-- <input type="text" name="facultyNum" id="facultyNum" class="form-control" required> -->
+                                                </div> 
+                                                    
+                                            </div> 
+                                            <div class="form-group col-md-12" id="departmentSelectGroup" style="display: none;">
                                                 <label> 
-                                                    Faculty ID
+                                                    Select Department:
                                                     <span class="text-bold text-sm text-danger">*</span> 
                                                 </label>
-                                                <input type="text" name="facultyNum" id="facultyNum" class="form-control" required>
-                                            </div>                                            
+                                                <select class="form-control selectpicker" name="studentCollege" id="studentCollege" data-live-search = "true" data-size="5" title="Search Department..." data-width="100%" required>
+                                                    <?php foreach($colleges as $college): ?>
+                                                    <option data-tokens="<?php echo $college['deptID']; ?>" value="<?php echo $college['deptID']; ?>"><?php echo $college['dept_desc']; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <!-- <input type="text" name="facultyNum" id="facultyNum" class="form-control" required> -->
+                                            </div>                                          
                                             <div class="row">
                                                 <div class="form-group col-md-4">
                                                     <label> 
@@ -186,12 +224,17 @@
 <script>
     $(function () 
     {
+        var uname = "<?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?>"; // Safely escape the name
         var currentDate = new Date();
-        var formattedDate = currentDate.toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        // Format the date as "January 1, 2024"
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+        // Format the time as "3:15 PM"
+        var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+        // Combine date and time
+        var formattedDateTime = formattedDate + ', ' + formattedTime;
         
         $("#user_tbl").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -199,21 +242,22 @@
         buttons: [
             {
                 extend: 'excelHtml5',
-                title: 'DSA user Report ' + formattedDate
+                title: 'DSA user Report ' + formattedDateTime
             },
             {
                 extend: 'csvHtml5',
-                title: 'DSA user Report ' + formattedDate
+                title: 'DSA user Report ' + formattedDateTime
             },
             {
                 extend: 'pdfHtml5',
-                title: 'DSA user Report ' + formattedDate,
+                title: 'DSA user Report ' + formattedDateTime,
                 customize: function (doc) {
                     doc.content.splice(0, 1, {
                         text: [
                             { text: 'DSA user Report\n', fontSize: 14, bold: true,alignment: 'center'},
                             { text: 'System Generated Report\n\n', fontSize: 12,alignment: 'center' },
-                            { text: 'Generated Date: ' + formattedDate, fontSize: 9,alignment: 'center' }
+                            { text: 'Printed by:' + uname+'\n', fontSize: 9,alignment: 'center' },
+                            { text: 'Generated Date: ' + formattedDateTime, fontSize: 9,alignment: 'center' }
                         ],
                         margin: [0, 0, 0, 12]
                     });
@@ -228,7 +272,8 @@
                         .prepend(
                             '<div style="text-align: center; font-size: 14pt;">DSA user Report</div>' +
                             '<div style="text-align: center; font-size: 12pt;">System Generated Report</div>' +
-                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDate + '</div><br>'
+                            '<div style="text-align: center; font-size: 12pt;">Printed by: '+ uname +'</div>' +
+                            '<div style="text-align: center; font-size: 12pt;">Date: ' + formattedDateTime + '</div><br>'
                         );
                 }
             },
@@ -238,5 +283,26 @@
         ],
         }).buttons().container().appendTo('#user_tbl_wrapper .col-md-6:eq(0)');
         
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#role').on('change', function () {
+            const selectedRole = $(this).val();
+            const departmentGroup = $('#departmentSelectGroup');
+            const departmentSelect = $('#studentCollege');
+
+            if (selectedRole === 'College-Dean') {
+                departmentGroup.show();
+                departmentSelect.prop('required', true);
+            } else {
+                departmentGroup.hide();
+                departmentSelect.prop('required', false);
+            }
+        });
+
+        // Trigger change on page load to handle pre-selected value
+        $('#role').trigger('change');
     });
 </script>

@@ -7,9 +7,10 @@ include('../sessions.php');
         $policy_code = $_POST['policy_code'];
         $policy_title = $_POST['policy_title'];
         $policy_description = $_POST['policy_description'];
+        $policy_type = $_POST['policyType'];
         $uid = $_SESSION['uid'];
 
-        $insert_new_policy = mysqli_query($connection, "INSERT INTO schoolpolicy_tbl (policy_code,policy_title, policy_desc)  VALUES ('$policy_code', '$policy_title', '$policy_description') ");
+        $insert_new_policy = mysqli_query($connection, "INSERT INTO schoolpolicy_tbl (policy_code,policy_title, policy_desc,policy_type)  VALUES ('$policy_code', '$policy_title', '$policy_description','$policy_type') ");
         $policyID = mysqli_insert_id($connection);
 
         if($policyID != '' ) {

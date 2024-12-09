@@ -196,6 +196,7 @@
                                         <td>
                                             <a class="btn btn-warning form-control" href="view_student.php?id=<?php echo$student['studID']; ?>"> View <i class="fa fa-user-circle"></i> </i></a>
                                         </td>
+                                        
                                     </tr>
                                     <?php
                                 }
