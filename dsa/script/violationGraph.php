@@ -1,6 +1,6 @@
 <script>
     //areaChart------------------------------------------------
-        var areaChartCanvas = $('#areaChart').get(0).getContext('2d');
+    var areaChartCanvas = $('#areaChart').get(0).getContext('2d');
         var areaChart;
         var violationTitles = [];
 
@@ -260,4 +260,104 @@
 
             fetchDataAndInitializeGroupedBarChart();
             setInterval(fetchDataAndInitializeGroupedBarChart, 10000);
+    //bar Chart------------------------------------------------
+
+
+    function getRandomColors(count) {
+    const colors = [];
+    for (let i = 0; i < count; i++) {
+        const randomColor = `rgba(${Math.floor(Math.random() * 256)}, 
+                                 ${Math.floor(Math.random() * 256)}, 
+                                 ${Math.floor(Math.random() * 256)}, 
+                                 0.4)`; // Adjust alpha (opacity) as needed
+        colors.push(randomColor);
+    }
+    return colors;
+}
+
+
+
+    var mostViolatedChartCanvas = $('#mostViolatedPolicy').get(0).getContext('2d');
+var mostViolatedChart;
+
+function initializeMostViolatedChart(data) {
+    const labels = data.map(item => item.policy_code);
+    const counts = data.map(item => item.violation_count);
+    const randomColors = getRandomColors(data.length); // Generate colors
+
+    const chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Most Violated Policies',
+                backgroundColor: randomColors, // Use random colors
+                borderColor: randomColors.map(color => color.replace('0.4', '1')), // Make borders fully opaque
+                borderWidth: 1,
+                data: counts
+            }
+        ]
+    };
+
+    const chartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+            display: false // Hide legend since there's only one dataset
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: true
+                },
+                ticks: {
+                    autoSkip: false
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: true
+                },
+                ticks: {
+                    stepSize: 1,
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+    mostViolatedChart = new Chart(mostViolatedChartCanvas, {
+        type: 'bar',
+        data: chartData,
+        options: chartOptions
+    });
+}
+
+function updateMostViolatedChart(data) {
+    const labels = data.map(item => item.policy_code);
+    const counts = data.map(item => item.violation_count);
+
+    mostViolatedChart.data.labels = labels;
+    mostViolatedChart.data.datasets[0].data = counts;
+    mostViolatedChart.update();
+}
+
+function fetchMostViolatedData() {
+    fetch('script/fetchMostViolated.php')
+        .then(response => response.json())
+        .then(data => {
+            if (!mostViolatedChart) {
+                initializeMostViolatedChart(data);
+            } else {
+                updateMostViolatedChart(data);
+            }
+        })
+        .catch(error => console.error('Error fetching most violated data:', error));
+}
+
+fetchMostViolatedData();
+setInterval(fetchMostViolatedData, 10000); // Fetch data every 10 seconds
+
+
+
+    
 </script>

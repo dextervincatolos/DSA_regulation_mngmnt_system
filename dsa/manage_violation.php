@@ -103,11 +103,11 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="col-lg-12 col-md-12 col-12 pb-5">
-                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newStudent">
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#newViolation">
                             <i class="fa fa-paw"></i>
                         </a>
                         <!-- add student modal -->
-                        <div class="modal fade" id="newStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="newViolation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -128,9 +128,9 @@
                                                     <input type="text" class="form-control" value="<?php echo $schoolyear['_from'] .'-'. $schoolyear['_to'];  ?>" required readonly>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label>Current Semester:<span class="text-bold text-sm text-danger">*</span></label>
-                                                    <select class="form-control" name="semester" id="semester" required>
-                                                        <option value="">Select Semester</option>
+                                                    <label>Current Violation:<span class="text-bold text-sm text-danger">*</span></label>
+                                                    <select class="form-control" name="semester" id="semester" required disabled>
+                                                    <option value="">Select Semester</option>
                                                         <?php foreach($a as $Current_sem): ?>
                                                         <option value="<?php echo $Current_sem['semID']; ?>"><?php echo $Current_sem['semester']; ?></option>
                                                         <?php endforeach; ?>
@@ -406,3 +406,4 @@
     include('script/datatables/violation_tbl.php');
     include('includes/footer.php');
 ?>
+

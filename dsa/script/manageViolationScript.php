@@ -1,6 +1,30 @@
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
+        // Get the current month (0 = January, 11 = December)
+        const currentMonth = new Date().getMonth(); 
+
+        // Determine the semester (1 = First Semester, 2 = Second Semester)
+        let currentSemester;
+        if (currentMonth >= 0 && currentMonth <= 4) { // January to May
+            currentSemester = '2nd'; // First Semester
+        } else if (currentMonth >= 6 && currentMonth <= 11) { // July to December
+            currentSemester = '1st'; // Second Semester
+        }
+
+        // Select the appropriate semester in the dropdown
+        const semesterDropdown = document.getElementById('semester');
+        if (currentSemester) {
+            for (let option of semesterDropdown.options) {
+                if (option.textContent.includes(currentSemester + " Semester")) {
+                    option.selected = true;
+                    break;
+                }
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('violatedPolicy').disabled = true;
         document.getElementById('semester').addEventListener('change', function() {
             let violatedPolicySelect = document.getElementById('violatedPolicy');

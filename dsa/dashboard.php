@@ -33,7 +33,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                                
                                    <h3 id="dailyCount"><?php echo $daily_count; ?></h3>
                                 
-                                <p>Daily</p>
+                                <p>Today</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-hourglass-start"></i>
@@ -46,7 +46,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                         <div class="small-box bg-teal">
                             <div class="inner">
                                 <h3 id="weeklyCount"><?php echo $weekly_count; ?></p></h3>
-                                <p>Weekly</p>
+                                <p>This week</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-hourglass-half"></i>
@@ -60,7 +60,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                         <div class="small-box bg-teal">
                             <div class="inner">
                                 <h3 id="monthlyCount"><?php echo $monthly_count; ?></h3>
-                                <p>Monthly</p>
+                                <p>This Month</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-hourglass-end"></i>
@@ -88,7 +88,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                 <!-- ./Small boxes (Stat box) -->
 
                 <div class="row">
-                    <!-- health chart -->
+                    <!-- Total Number of Violation Reported -->
                     <div class="col-md-12">
                         <div class="card card-green card-outline">
                         <div class="card-header">
@@ -110,7 +110,7 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                         <!-- /.card -->
                     </div>
 
-                    <!-- educ chart -->
+                    <!-- Distribution of Violation by Department -->
                     <div class="col-md-12">
                         <div class="card card-green card-outline">
                         <div class="card-header">
@@ -131,8 +131,30 @@ $alltime_count = '<i class="fa fa-spinner"></i>';
                         </div>
                         <!-- /.card -->
                     </div>
-                </div>
-                <!-- /.row -->
+
+                    <!-- Most Violated Policy -->
+                    <div class="col-md-12">
+                        <div class="card card-green card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">Most Violated Policy</h3>
+
+                                <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                <canvas id="mostViolatedPolicy" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
 
               
 
