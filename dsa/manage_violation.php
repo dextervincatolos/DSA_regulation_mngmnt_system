@@ -129,7 +129,7 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label>Current Violation:<span class="text-bold text-sm text-danger">*</span></label>
-                                                    <select class="form-control" name="semester" id="semester" required disabled>
+                                                    <select class="form-control" name="semester" id="semester" required readonly>
                                                     <option value="">Select Semester</option>
                                                         <?php foreach($a as $Current_sem): ?>
                                                         <option value="<?php echo $Current_sem['semID']; ?>"><?php echo $Current_sem['semester']; ?></option>
@@ -156,7 +156,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Violated School Policy:<span class="text-bold text-sm text-danger">*</span></label>
-                                                <select class="form-control selectpicker" name="violatedPolicy" id="violatedPolicy" data-live-search="true" data-size="5" title="Search Policy..." data-width="100%" required disabled>
+                                                <select class="form-control selectpicker" name="violatedPolicy" id="violatedPolicy" data-live-search="true" data-size="5" title="Search Policy..." data-width="100%" required>
                                                     <?php foreach($policy as $schoolpolicy): ?>
                                                     <option data-tokens="<?php echo $schoolpolicy['spID']; ?>" value="<?php echo $schoolpolicy['spID']; ?>"><?php echo $schoolpolicy['policy_title']; ?></option>
                                                     <?php endforeach; ?>
